@@ -1,0 +1,26 @@
+node_modules/
+.env
+.env.local
+.e
+.DS_Store
+dist/
+build/
+.next/
+out/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.vercel
+backend/dev.db
+backend/*.db
+
+# Reference HTML files
+Link Website Html Codes/
+
+# OpenCode config
+.opencode/
+frontend/.opencode/
+
+# Temp files
+.tmp/
+frontend/.package-lock.json

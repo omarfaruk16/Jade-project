@@ -1,0 +1,294 @@
+/* ── About Section ─────────────────────────────── */
+.aboutSection {
+  padding-block: var(--space-xl, 80px);
+  color: #000;
+  background: #f7f7f7;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+  align-items: flex-start;
+  margin-bottom: 3.5rem;
+}
+
+.title {
+  min-width: 0;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin: 0;
+}
+
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: 1.5rem;
+  padding-top: 0.5rem;
+}
+
+
+.subtitle {
+  font-size: 1rem;
+  color: #000;
+  line-height: 1.6;
+  max-width: 550px;
+}
+
+.getToKnowBtn {
+  background: #000;
+  color: #fff;
+  border: none;
+  width: fit-content;
+  border-radius: 9999px;
+  padding: 0.8rem 1.8rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.getToKnowBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 280px);
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.missionCard {
+  grid-area: 1 / 1 / 3 / 2;
+  padding: 1.5rem;
+  justify-content: space-between;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.missionText {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #000;
+}
+
+.founder {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.founderImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.founderInfo h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.founderInfo p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #000;
+}
+
+.imageCard {
+  width: 100%;
+  height: 100%;
+}
+
+.imageCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.imageCard:hover img {
+  transform: scale(1.05);
+}
+
+.textCard {
+  padding: 1.5rem;
+  justify-content: space-between;
+  border: none;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.cardNumber {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: auto;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000;
+  margin: 1.5rem 0 1rem 0;
+  line-height: 1.3;
+}
+
+.cardDesc {
+  font-size: .9rem;
+  color: #000;
+  line-height: 1.6;
+  margin-top: auto;
+}
+
+
+/* Grid placement */
+.cImg1 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.cText2 {
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.cText1 {
+  grid-area: 1 / 3 / 2 / 4;
+}
+
+.cImg2 {
+  grid-area: 2 / 3 / 3 / 4;
+}
+
+.cImg3 {
+  grid-area: 1 / 4 / 2 / 5;
+}
+
+.cText3 {
+  grid-area: 2 / 4 / 3 / 5;
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 3rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.statItem h3 {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.statItem p {
+  color: #000;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* ── Tablet ────────────────────────────────────── */
+@media (max-width: 1023px) {
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, auto);
+  }
+
+  .headerRight {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .missionCard {
+    grid-area: 1 / 1 / 3 / 2;
+  }
+
+  .cImg1 {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  .cText1 {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+
+  .cImg3 {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+
+  .cText3 {
+    grid-area: 4 / 1 / 5 / 2;
+  }
+
+  .cText2 {
+    grid-area: 3 / 2 / 4 / 3;
+  }
+
+  .cImg2 {
+    grid-area: 4 / 2 / 5 / 3;
+  }
+
+  .statsRow {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    padding: 2rem 0;
+  }
+}
+
+/* ── Mobile ─────────────────────────────────────── */
+@media (max-width: 767px) {
+  .header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0px;
+  }
+
+  .aboutSection {
+    padding-block: var(--space-lg, 48px);
+  }
+
+  .imageCard img {
+    max-height: 250px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .missionCard,
+  .cImg1,
+  .cText1,
+  .cImg3,
+  .cText3,
+  .cText2,
+  .cImg2 {
+    grid-area: auto;
+  }
+
+  .statsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,95 @@
+.container {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  gap: 2rem;
+  position: relative;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: #000;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  padding-right: 1rem;
+}
+
+.marqueeWrapper {
+  flex-grow: 1;
+  overflow: hidden;
+  position: relative;
+  /* Optional: Fades out the edges for a smoother look */
+  mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+}
+
+.marquee {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  width: max-content;
+  /* 30s scroll duration. We duplicated the array 4 times, so we translate by 25% to loop seamlessly */
+  animation: scroll 25s linear infinite;
+  padding-left: 2.5rem;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-25%);
+    /* Shift by 1/4 of total width since we have 4 identical sets */
+  }
+}
+
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+}
+
+.logoImage {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .label {
+    padding-right: 0;
+  }
+
+  .marqueeWrapper {
+    width: 100%;
+  }
+
+  .marquee {
+    gap: 2.5rem;
+    padding-left: 0;
+  }
+
+  .logoItem {
+    height: 24px;
+  }
+}

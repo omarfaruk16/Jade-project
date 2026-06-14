@@ -1,0 +1,679 @@
+.dealerPage {
+  background: #f8f8f8;
+  color: #000;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max, 1600px);
+  margin: 0 auto;
+  padding-inline: clamp(24px, 6vw, 48px);
+  box-sizing: border-box;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 90vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #f7f7f7;
+  margin: 6px;
+  margin-bottom: 6rem;
+  border-radius: 10px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center / cover no-repeat;
+  border-radius: 10px;
+  z-index: 0;
+  animation: heroZoomOut 2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes heroZoomOut {
+  from { transform: scale(1.12); }
+  to { transform: scale(1); }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #fff;
+  padding: 24px;
+  max-width: 900px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 1.05em;
+  margin-bottom: 1rem;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+  color: #ffffff;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.5;
+  opacity: 0.9;
+  color: #fff;
+  max-width: 600px;
+  margin: 0 auto;
+  word-break: break-word;
+}
+
+/* Intro Section */
+.intro {
+  padding: 3.5rem 0;
+  background: #f8f8f8;
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.introText {
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  line-height: 1.2;
+  color: #000000;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  margin-bottom: 40px;
+}
+
+.founder {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.founder img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.founder h4 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.founder span {
+  font-size: 0.9rem;
+  color: #000;
+}
+
+.officeInfo h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.officeInfo p {
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
+  color: #000;
+  margin-bottom: 2rem;
+}
+
+.ctaSmall {
+  background: transparent;
+  border: 1px solid #ccc;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ctaSmall:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+/* Office Design Detailed Section */
+.officeDesignDetailed {
+  padding: 3rem 0;
+  background: #f8f8f8;
+  color: #000;
+}
+
+.officeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+.officeTitle {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin: 0;
+  max-width: 800px;
+}
+
+.officeHeaderRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2rem;
+  text-align: right;
+}
+
+.officeHeaderRight p {
+  font-size: 1rem;
+  letter-spacing: 0em;
+  line-height: 1.5;
+  color: #000;
+}
+
+.contactNowBtn {
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.contactNowBtn:hover {
+  opacity: 0.8;
+}
+
+.featureRow {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 4rem;
+  margin-bottom: 3rem;
+}
+
+.featureRow:last-child {
+  margin-bottom: 0;
+}
+
+.featureLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000;
+  align-self: flex-start;
+}
+
+.featureGridText {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem 3rem;
+}
+
+.conceptBlock h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.conceptBlock p {
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
+  color: #000;
+}
+
+.featureGridQuotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.quoteCard {
+  background: #fff;
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.quoteOrange {
+  background: #F05C46;
+  color: #fff;
+}
+
+.quoteOrange p {
+  color: #fff;
+}
+
+.quoteCard p {
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
+  color: #000;
+}
+
+.quoteCard.quoteOrange p {
+  color: #fff;
+}
+
+.quoteIconWrap {
+  margin-bottom: 1.5rem;
+}
+
+.quoteIconWrap svg {
+  width: 48px;
+  height: 48px;
+}
+
+.quoteIconOrange {
+  color: #F05C46;
+}
+
+/* FAQ Card Section */
+.faqCardSection {
+  padding: 8rem 0;
+  background: #f8f8f8;
+}
+
+.faqHeaderCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.faqTitleCard {
+  font-size: 3rem;
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+
+.faqSubtitleCard {
+  font-size: 1.1rem;
+  color: #000;
+  max-width: 300px;
+  text-align: right;
+  line-height: 1.5;
+}
+
+.faqSplitCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: stretch;
+}
+
+.faqListCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.faqItemCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.faqTriggerCard {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.faqContentCard {
+  overflow: hidden;
+  padding: 0 2rem 1.5rem;
+  color: #000;
+  line-height: 1.6;
+}
+
+.faqImageWrapCard {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+  min-height: 500px;
+}
+
+.faqRightImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.faqOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 4rem 2rem 2rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+  color: #fff;
+}
+
+.overlayIcon {
+  margin-bottom: 1rem;
+}
+
+.faqOverlay h4 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.faqContactBtn {
+  display: inline-block;
+  background: #fff;
+  color: #000;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+.faqContactBtn:hover {
+  opacity: 0.9;
+}
+
+/* Partners Section */
+.partnersSection {
+  padding: 8rem 0;
+  background: #fcfcfc;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  text-transform: uppercase;
+  letter-spacing: -0.06em;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 2.5rem;
+}
+
+.partnersGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: center;
+}
+
+.partnerLogo {
+  height: 35px;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.partnerLogo:hover {
+  opacity: 1;
+}
+
+.placeholders {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.placeholders img {
+  height: 30px;
+  filter: grayscale(1);
+  opacity: 0.4;
+}
+
+/* Form Section */
+.dealerFormSection {
+  padding: 8rem 0;
+  background: #fff;
+}
+
+.formSplit {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: stretch;
+}
+
+.formInfo {
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formInfo h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.formInfo p {
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
+  color: #000;
+  margin-bottom: 3rem;
+}
+
+.handshakeImage {
+  width: 100%;
+  flex: 1;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.formCard {
+  background: #fff;
+  padding: 0 1.25rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.inputGroup label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.inputGroup input,
+.inputGroup select,
+.inputGroup textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s;
+  max-width: 100%;
+}
+
+.inputGroup select {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.inputGroup input:focus,
+.inputGroup select:focus,
+.inputGroup textarea:focus {
+  outline: none;
+  border-color: #000;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.03);
+}
+
+.inputGroup textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.submitBtn {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+}
+
+.success {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.success h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.success p {
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
+  color: #000;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 1200px) {
+  .featureRow {
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  .introGrid,
+  .faqSplitCard {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .formSplit {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 809px) {
+  .title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    letter-spacing: -0.05em;
+  }
+
+  .heroContent {
+    gap: 40px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .officeTitle {
+    font-size: 2.5rem;
+  }
+
+  .formRow,
+  .featureGridText,
+  .featureGridQuotes,
+  .formSplit {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .featureRow {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-top: 2rem;
+  }
+
+  .introInfo p {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+
+  .handshakeImage {
+    display: none;
+  }
+
+  .officeHeader {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .officeHeaderRight {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .partnersGrid {
+    gap: 1.5rem;
+  }
+}

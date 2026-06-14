@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════
+   JADE DESIGN TOKENS — Single Source of Truth
+═══════════════════════════════════════════════════ */
+:root {
+  /* Brand colours */
+  --background: #f7f7f7;
+  --foreground: #000000;
+  --primary: #34d399;
+  --secondary: #fb923c;
+  --accent: #10b981;
+  --primary-glow: rgba(52, 211, 153, 0.3);
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-hover: rgba(255, 255, 255, 0.12);
+
+  /* ── Spacing scale ── */
+  --space-xs:  8px;
+  --space-sm:  16px;
+  --space-md:  24px;
+  --space-lg:  48px;
+  --space-xl:  80px;
+  --space-2xl: 120px;
+
+  /* ── Section vertical padding (mobile-first) ── */
+  --section-py: var(--space-xl);          /* 80px  — laptop+  */
+
+  /* ── Container ── */
+  --container-max: 1600px;
+}
+
+/* ── Global reset ── */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  width: 100%;
+  background: var(--background);
+  /* NOTE: overflow-x should only be on body, not html,
+     otherwise position:fixed children can be clipped in Firefox/Safari */
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), 'Geist', sans-serif !important;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0em;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6, .jade-page-title, .jade-section-title {
+  font-family: var(--font-geist-sans), 'Geist', sans-serif !important;
+  font-weight: 500;
+  line-height: 1.1 !important;
+}
+
+p, span, div, a, button, input, textarea {
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+}
+
+button {
+  font-family: var(--font-geist-sans), 'Geist', sans-serif !important;
+}
+
+/* ── Background (light theme, matching Framer) ── */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Global utility classes ── */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass:hover {
+  background: var(--glass-hover);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+}
+
+.gradient-text {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}

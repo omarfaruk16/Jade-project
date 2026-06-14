@@ -1,0 +1,275 @@
+/* ═══════════════════════════════════════════════════
+   JADE SHARED DESIGN SYSTEM
+   Import this file from layout.tsx via globals so all
+   pages and components share the same tokens.
+═══════════════════════════════════════════════════ */
+
+/* ── Breakpoints (reference — NOT actual media queries) ─────────────
+   Mobile:   0 – 767px   (default styles, no query)
+   Tablet:   768px+      @media (min-width: 768px)
+   Laptop:   1024px+     @media (min-width: 1024px)
+   Desktop:  1440px+     @media (min-width: 1440px)
+────────────────────────────────────────────────── */
+
+/* ════════════════════════════════════════════════
+   1.  UNIVERSAL CONTAINER  (single source of truth)
+   Every section wraps its content in this class.
+   Horizontal padding uses clamp() so it scales
+   gracefully from mobile to ultra-wide.
+════════════════════════════════════════════════ */
+.jade-container {
+  width: 100%;
+  max-width: var(--container-max, 1600px);
+  margin-inline: auto;
+  padding-inline: clamp(24px, 6vw, 48px);
+}
+
+/* ════════════════════════════════════════════════
+   2.  SECTION WRAPPER HELPERS
+   Sections handle only their vertical rhythm.
+   Horizontal containment lives in .jade-container.
+════════════════════════════════════════════════ */
+.jade-section {
+  width: 100%;
+  padding-block: 100px;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .jade-section {
+    padding-block: 80px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .jade-section {
+    padding-block: 60px;
+  }
+
+  .jade-container {
+    padding-inline: 15px;
+  }
+}
+
+/* ════════════════════════════════════════════════
+   3.  HERO SECTIONS  (all pages)
+════════════════════════════════════════════════ */
+.jade-hero {
+  min-height: 55vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.jade-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.jade-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  padding-inline: clamp(24px, 6vw, 48px);
+}
+
+/* ════════════════════════════════════════════════
+    4.  SHARED TYPOGRAPHY
+    ════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════
+    Framer Site Typography Scale (Geist)
+    Desktop (≥1200px):
+      H1: 80px w500 ls:-0.07em lh:1.1em
+      H2: 56px w500 ls:-0.06em lh:1.2em
+      H3: 42px w500 ls:-0.06em lh:1.2em
+      H4: 28px w400 ls:-0.06em lh:1.2em
+      H5: 20px w400 ls:0em lh:1.2em (bold uses Inter)
+      Body: 14px w400 ls:0em lh:150%
+      Body-lg: 16px w400 ls:-0.04em lh:150%
+      Body-xl: 18px w400 ls:0em lh:1.2em (Inter for bold)
+    Tablet (810-1199px):
+      H1: 64px w500 ls:-0.05em lh:1.1em
+      H2: 38px w500 ls:-0.06em lh:1.2em
+      H3: 42px w500 ls:-0.06em lh:1.2em
+    Mobile (<810px):
+      H1: 48px w500 ls:-0.05em lh:1.1em
+      H2: 32px w500 ls:-0.06em lh:1.2em
+      H3: 42px w500 ls:-0.06em lh:1.2em
+    ════════════════════════════════════════════════ */
+.jade-page-title {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1.1em;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 1200px) {
+  .jade-page-title {
+    font-size: 80px;
+    letter-spacing: -0.07em;
+  }
+}
+
+.jade-page-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 150%;
+  opacity: 0.88;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.jade-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 1.4em;
+  color: #000;
+  margin-bottom: 0.75rem;
+}
+
+.jade-section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1.2em;
+  margin: 0;
+}
+
+.jade-section-text {
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0em;
+  color: #000;
+}
+
+/* ════════════════════════════════════════════════
+   5.  CEO / FOUNDER BADGE
+════════════════════════════════════════════════ */
+.jade-founder-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.jade-founder-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #eee;
+}
+
+.jade-founder-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: block;
+  color: #000;
+}
+
+.jade-founder-role {
+  font-size: 1rem;
+  color: #000000;
+}
+
+/* ════════════════════════════════════════════════
+   6.  WHAT'S INCLUDED  (quote / feature cards)
+════════════════════════════════════════════════ */
+.jade-quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.jade-quote-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.jade-quote-card:hover {
+  transform: translateY(-4px);
+}
+
+.jade-quote-card.orange {
+  background: #5abf61;
+  color: #fff;
+}
+
+.jade-quote-card.orange .jade-quote-icon {
+  color: #fff;
+}
+
+.jade-quote-card.orange .jade-quote-text {
+  color: #fff;
+}
+
+.jade-quote-icon {
+  width: 28px;
+  height: 24px;
+  color: #5abf61;
+  flex-shrink: 0;
+}
+
+.jade-quote-text {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #000;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ════════════════════════════════════════════════
+   7.  RESPONSIVE OVERRIDES
+════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+  .jade-quotes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .jade-quotes-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .jade-quote-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+    gap: 1rem;
+  }
+
+  .jade-quote-icon {
+    width: 20px;
+    height: 18px;
+  }
+
+  .jade-quote-text {
+    font-size: 0.95rem;
+  }
+
+  .jade-founder-badge {
+    margin-top: 1.25rem;
+  }
+}

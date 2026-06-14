@@ -1,0 +1,353 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model Admin {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+}
+
+model Project {
+  id              String   @id @default(uuid())
+  createdAt       DateTime @default(now())
+  
+  // Header
+  title           String
+  subtitle        String
+  coverImage      String
+
+  // Meta
+  date            String
+  category        String
+  spacePlan       String   @default("")
+  timeline        String
+  overviewDesc    String   // long text
+  overviewImage   String
+
+  // Gallery (Stored as a stringified JSON array, e.g., '["url1", "url2", "url3"]')
+  galleryJson     String   @default("[]")
+
+  // Process Section - image + dynamic steps as JSON array [{title, desc}]
+  processImage    String   @default("")
+  processStepsJson String  @default("[]")
+
+  // Legacy fields (kept for backward compat)
+  client          String   @default("")
+  p1Title         String   @default("")
+  p1Desc          String   @default("")
+  p2Title         String   @default("")
+  p2Desc          String   @default("")
+  p3Title         String   @default("")
+  p3Desc          String   @default("")
+}
+
+model Promotion {
+  id        String   @id @default(uuid())
+  title     String
+  image     String
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id        String   @id @default(uuid())
+  name      String
+  role      String?
+  review    String
+  avatar    String?
+  rating    Int      @default(5)
+  createdAt DateTime @default(now())
+}
+
+model TeamMember {
+  id          String   @id @default(uuid())
+  name        String
+  designation String?
+  image       String
+  createdAt   DateTime @default(now())
+}
+
+model FAQ {
+  id        String   @id @default(uuid())
+  question  String
+  answer    String
+  createdAt DateTime @default(now())
+}
+
+model ContactSettings {
+  id        String       @id @default("default")
+  phone     String
+  email     String
+  address   String
+  updatedAt DateTime     @updatedAt
+  socials   SocialLink[]
+}
+
+model SocialLink {
+  id                String          @id @default(uuid())
+  name              String
+  url               String
+  contactSettings   ContactSettings @relation(fields: [contactSettingsId], references: [id])
+  contactSettingsId String
+}
+
+model Partner {
+  id    String @id @default(uuid())
+  name  String
+  logo  String
+  createdAt DateTime @default(now())
+}
+
+model DealerRequest {
+  id           String   @id @default(uuid())
+  fullName     String
+  email        String
+  phone        String
+  businessName String
+  location     String
+  budget       String
+  interest     String
+  message      String?
+  createdAt    DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  fullName  String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+// ─── Services ────────────────────────────────────────────────────────────────
+
+model ServiceParentCategory {
+  id        String                 @id @default(uuid())
+  name      String
+  order     Int                    @default(0)
+  createdAt DateTime               @default(now())
+  children  ServiceChildCategory[]
+}
+
+model ServiceChildCategory {
+  id          String                @id @default(uuid())
+  name        String
+  slug        String                @unique
+  description String?
+  coverImage  String?
+  subtitle    String?
+  statsNumber String?
+  statsText   String?
+  order       Int                   @default(0)
+  createdAt   DateTime              @default(now())
+  parentId    String
+  parent      ServiceParentCategory @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  items       ServiceItem[]
+}
+
+
+model ServiceItem {
+  id                    String                @id @default(uuid())
+  title                 String
+  about                 String
+  keyLine               String
+  imageUrl              String
+  
+  // Overview Fields
+  overviewCategory      String?
+  overviewBestFor       String?
+  overviewStyleApproach String?
+
+  featureQuotesJson     String                @default("[]")
+
+  order                 Int                   @default(0)
+  createdAt             DateTime              @default(now())
+  childCategoryId       String
+  childCategory         ServiceChildCategory  @relation(fields: [childCategoryId], references: [id], onDelete: Cascade)
+  whatsIncluded         WhatsIncludedItem[]
+  gallery               ServiceGalleryImage[]
+}
+
+model WhatsIncludedItem {
+  id            String      @id @default(uuid())
+  title         String
+  description   String
+  order         Int         @default(0)
+  serviceItemId String
+  serviceItem   ServiceItem @relation(fields: [serviceItemId], references: [id], onDelete: Cascade)
+}
+
+model ServiceGalleryImage {
+  id            String      @id @default(uuid())
+  url           String
+  order         Int         @default(0)
+  serviceItemId String
+  serviceItem   ServiceItem @relation(fields: [serviceItemId], references: [id], onDelete: Cascade)
+}
+
+// ─── Products ────────────────────────────────────────────────────────────────
+
+model ProductCategory {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  image     String   // Image shown in the header dropdown menu
+  subtitle  String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  products  Product[]
+}
+
+model Product {
+  id                    String   @id @default(uuid())
+  title                 String   // e.g., Luxury series
+  subtitle              String   // e.g., Explore all the luxury options
+  coverImage            String   // Background image in the category list
+  
+  // Details Page Info
+  overviewCategory      String?
+  overviewBestFor       String?
+  overviewStyleApproach String?
+  
+  about                 String?
+  keyLine               String?  // Red box text
+  imageUrl              String?  // About image
+  
+  featureQuotesJson     String   @default("[]")
+
+  order                 Int      @default(0)
+  createdAt             DateTime @default(now())
+  
+  categoryId            String
+  category              ProductCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  whatsIncluded         ProductWhatsIncluded[]
+  gallery               ProductGalleryImage[]
+  descriptions          ProductDescription[]
+  types                 ProductType[]
+  materials             ProductMaterial[]
+  accessories           ProductAccessory[]
+  appliances            ProductAppliance[]
+}
+
+model ProductWhatsIncluded {
+  id            String   @id @default(uuid())
+  title         String
+  description   String
+  order         Int      @default(0)
+  productId     String
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductGalleryImage {
+  id            String   @id @default(uuid())
+  url           String
+  order         Int      @default(0)
+  productId     String
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// ─── Product Descriptions ────────────────────────────────────────────────────
+model ProductDescription {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  order       Int      @default(0)
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// ─── Product Types ───────────────────────────────────────────────────────────
+model ProductType {
+  id        String   @id @default(uuid())
+  name      String
+  image     String
+  order     Int      @default(0)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// ─── Product Materials ───────────────────────────────────────────────────────
+model ProductMaterial {
+  id          String              @id @default(uuid())
+  sectionTitle String
+  sectionDesc  String
+  order        Int                @default(0)
+  productId    String
+  product      Product            @relation(fields: [productId], references: [id], onDelete: Cascade)
+  items        ProductMaterialItem[]
+}
+
+model ProductMaterialItem {
+  id         String          @id @default(uuid())
+  title      String
+  description String
+  image      String
+  order      Int             @default(0)
+  materialId String
+  material   ProductMaterial @relation(fields: [materialId], references: [id], onDelete: Cascade)
+}
+
+// ─── Product Accessories ─────────────────────────────────────────────────────
+model ProductAccessory {
+  id           String                @id @default(uuid())
+  sectionTitle String
+  sectionDesc  String
+  order        Int                   @default(0)
+  productId    String
+  product      Product               @relation(fields: [productId], references: [id], onDelete: Cascade)
+  items        ProductAccessoryItem[]
+}
+
+model ProductAccessoryItem {
+  id          String           @id @default(uuid())
+  title       String
+  description String
+  image       String
+  order       Int              @default(0)
+  accessoryId String
+  accessory   ProductAccessory @relation(fields: [accessoryId], references: [id], onDelete: Cascade)
+}
+
+// ─── Product Appliances ──────────────────────────────────────────────────────
+model ProductAppliance {
+  id           String                @id @default(uuid())
+  sectionTitle String
+  sectionDesc  String
+  order        Int                   @default(0)
+  productId    String
+  product      Product               @relation(fields: [productId], references: [id], onDelete: Cascade)
+  items        ProductApplianceItem[]
+}
+
+model ProductApplianceItem {
+  id          String           @id @default(uuid())
+  title       String
+  description String
+  image       String
+  order       Int              @default(0)
+  applianceId String
+  appliance   ProductAppliance @relation(fields: [applianceId], references: [id], onDelete: Cascade)
+}
+
+// ─── Blogs ───────────────────────────────────────────────────────────────────
+
+model Blog {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  coverImage  String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

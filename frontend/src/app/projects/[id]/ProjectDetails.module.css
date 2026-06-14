@@ -1,0 +1,347 @@
+.pageWrapper {
+  background: #f7f7f7;
+  color: #000;
+  min-height: 100vh;
+}
+
+/* ── Hero ── */
+.heroWrapper {
+  padding: 6px;
+  margin-bottom: 6rem;
+}
+
+.hero {
+  height: 90vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.coverImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.32);
+  z-index: 2;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: white;
+  padding: 0 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 1.05em;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+  color: #ffffff;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin: 0 auto;
+  word-break: break-word;
+}
+
+/* ── Layout Container ── */
+.contentContainer {
+  width: 100%;
+  max-width: var(--container-max, 1600px);
+  margin: 0 auto;
+  padding-inline: clamp(24px, 6vw, 48px);
+}
+
+/* ── Overview / Process Section 3-col grid ── */
+.overviewSection,
+.processSection {
+  display: grid;
+  grid-template-columns: 180px 3fr 2fr;
+  gap: 4rem;
+  margin-bottom: 8rem;
+  align-items: start;
+}
+
+.leftColumn {
+  /* sticky label column */
+}
+
+.middleColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.rightColumn {
+  width: 100%;
+}
+.rightColumn img{
+  max-height: 400px;
+}
+.aboutLabel {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  white-space: nowrap;
+}
+
+/* ── Meta Grid ── */
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem 2rem;
+  margin-bottom: 4rem;
+}
+
+.metaItem label {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: #000;
+}
+
+.metaItem span {
+  font-size: 1rem;
+  color: #000;
+  font-weight: 400;
+}
+
+.overviewDesc {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #000;
+  max-width: 600px;
+}
+
+.overviewImage,
+.processImage {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  display: block;
+  object-fit: cover;
+}
+
+/* ── Gallery — 2 per row, then 1 full-width, repeating ── */
+.gallerySection {
+  margin-bottom: 8rem;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/*
+  Items at positions 3, 6, 9… (1-indexed) are the full-width ones.
+  In a 2-col grid every 3rd item starting at 3rd (3n in 1-indexed = 3n+0 in 0-indexed)
+  We use nth-child(3n) which matches children 3, 6, 9...
+*/
+.galleryItem:nth-child(3n) {
+  grid-column: 1 / -1;
+}
+
+.galleryItem {
+  overflow: hidden;
+  border-radius: 20px;
+  display: flex;
+}
+
+/* Pair images (1st & 2nd in each group of 3) — 1:1 square */
+.galleryImg {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+  transition: transform 0.6s ease;
+}
+
+/* Full-width image (every 3rd) — 2:1 wide */
+.galleryItem:nth-child(3n) .galleryImg {
+  aspect-ratio: 2 / 1;
+}
+
+.galleryImg:hover {
+  transform: scale(1.02);
+}
+
+/* ── Process Steps ── */
+.processList {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.processItem {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.stepNumber {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #bbb;
+  letter-spacing: 0.06em;
+  padding-top: 0.2rem;
+  flex-shrink: 0;
+  min-width: 28px;
+}
+
+.processItem h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: #000;
+}
+
+.processItem p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #000;
+}
+
+/* ── Related ── */
+.relatedHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.relatedHeader h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 6rem;
+}
+
+.relatedCard img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.relatedFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+
+  .overviewSection,
+  .processSection {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .leftColumn {
+    grid-column: span 2;
+    margin-bottom: -1rem;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .overviewSection,
+  .processSection {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .leftColumn {
+    grid-column: span 1;
+  }
+
+  .relatedGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Gallery stays 2-per-row on tablet, images keep natural ratio */
+}
+
+@media (max-width: 809px) {
+  .title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    letter-spacing: -0.05em;
+  }
+
+  .heroContent {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    height: 70vh;
+  }
+
+  .metaGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 1.5rem;
+  }
+
+  /* Gallery goes 1-per-row on mobile */
+  .galleryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  /* On mobile all items go full width, reset the 3n span */
+  .galleryItem:nth-child(3n) {
+    grid-column: auto;
+  }
+
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .overviewImage,
+  .processImage {
+    border-radius: 14px;
+  }
+}

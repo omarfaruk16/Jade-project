@@ -1,0 +1,62 @@
+.marqueeContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  /* Edge fade – logos appear from left, vanish at right */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+.marqueeContent {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.logoItem {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;        /* compact — matches reference screenshot */
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logoImage {
+  height: 100%;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  /* No overlay — show logos exactly as uploaded */
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.logoItem:hover {
+  transform: scale(1.1);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .logoItem {
+    height: 24px;
+  }
+  .marqueeContent {
+    gap: 2rem;
+  }
+}

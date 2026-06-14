@@ -1,0 +1,249 @@
+.heroWrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: #f7f7f7;
+}
+
+.heroContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  animation: heroZoomOut 2s cubic-bezier(0.22, 1, 0.36, 1) both, breathe 20s 2s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoomOut {
+  from { transform: scale(1.15); }
+  to { transform: scale(1.05); }
+}
+
+@keyframes breathe {
+  0% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.content {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  padding: 24px;
+  max-width: 900px;
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.hashtag {
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 1.4em;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+}
+
+.title {
+  font-size: clamp(3rem, 6vw, 80px);
+  font-weight: 500;
+  line-height: 1.05em;
+  letter-spacing: -0.07em;
+  max-width: 900px;
+  color: #ffffff;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+  text-align: center;
+}
+
+.ctaButton {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 100px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: normal;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  height: 48px;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+}
+
+.ctaButton:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-1px);
+}
+
+/* Bottom widgets */
+.bottomLeftWidget {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.avatars {
+  display: flex;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  margin-left: -12px;
+  background-color: #333;
+  object-fit: cover;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.trustText {
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.4em;
+  letter-spacing: 0em;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+}
+
+.trustText strong {
+  display: block;
+  font-weight: 500;
+}
+
+.bottomRightWidget {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.awardsLabel {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+}
+
+.awardsList {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.awardIcon {
+  height: 45px;
+  width: auto;
+  max-width: 80px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.awardIcon:hover {
+  transform: scale(1.1);
+}
+
+.madeInFramer {
+  background: white;
+  color: black;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+@media (max-width: 809px) {
+  .title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    letter-spacing: -0.05em;
+  }
+
+  .content {
+    gap: 40px;
+    padding: 16px;
+  }
+
+  .bottomLeftWidget {
+    bottom: 7.5rem;
+    left: 1rem;
+    right: auto;
+  }
+
+  .bottomRightWidget {
+    bottom: 1.5rem;
+    left: 1rem;
+    right: 1rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .awardsList {
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+  }
+
+  .awardIcon {
+    height: 32px;
+    max-width: 55px;
+  }
+}

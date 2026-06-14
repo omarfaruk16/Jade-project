@@ -1,0 +1,396 @@
+.footer {
+  background: #000000;
+  color: #ffffff;
+  padding-top: clamp(5rem, 10vh, 8rem);
+  padding-bottom: 0rem;
+  position: relative;
+  z-index: 10;
+  min-height: 100dvh;
+  overflow: hidden;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.container {
+  max-width: var(--container-max, 1600px);
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: clamp(24px, 6vw, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 8rem;
+}
+
+/* GRID ROWS */
+.gridRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.gridRow.top {
+  align-items: flex-start;
+}
+
+.gridRow.middle {
+  align-items: flex-end;
+}
+
+.gridRow.bottom {
+  align-items: flex-end;
+  font-size: 14px;
+  color: #ffffff;
+  margin-top: 3rem;
+}
+
+.colLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.colRight {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.colRightBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.brandInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3.75rem;
+}
+
+.logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  height: auto;
+  max-height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+.tagline {
+  font-family: var(--font-geist-sans), "Geist", sans-serif;
+  font-size: clamp(1.5rem, 2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.06em;
+  color: #fff;
+  margin: 0;
+  max-width: 350px;
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  align-items: flex-start;
+}
+
+.navLinks a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-geist-sans), "Geist", sans-serif;
+  font-size: clamp(1.5rem, 2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.06em;
+  transition: opacity 0.2s ease;
+}
+
+.navLinks a:hover {
+  opacity: 0.7;
+}
+
+.topRightIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.2rem;
+}
+
+.socialLink {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+}
+
+.socialLink:hover {
+  opacity: 0.7;
+}
+
+.diamondStar {
+  font-size: 24px;
+  color: #ffffff;
+  opacity: 0.85;
+  user-select: none;
+}
+
+/* MIDDLE ROW */
+.phoneNumbers {
+  font-size: 15px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.middleSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.emailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.phoneBlur {
+  display: inline-flex;
+  justify-content: flex-start !important;
+}
+
+.emailText {
+  font-size: clamp(2rem, 6vw, 80px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #ffffff;
+  transition: opacity 0.2s ease;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+  text-decoration: none;
+}
+
+.emailText:hover {
+  opacity: 0.8;
+}
+
+/* BOTTOM ROW */
+.policyLinks {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.policyLinks a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.policyLinks a:hover {
+  color: #ffffff;
+}
+
+.copyright {
+  margin: 0;
+}
+
+.address {
+  text-align: left;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.address p {
+  margin: 0;
+}
+
+.bottomRight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: auto;
+  min-width: 250px;
+}
+
+.mobileDiamondIcon {
+  display: none;
+}
+
+/* RESPONSIVE: Tablet View */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .tagline {
+    display: none;
+  }
+
+  .navLinks a {
+    font-size: 26px;
+  }
+
+  .policyLinks {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* RESPONSIVE: Mobile View */
+@media (max-width: 768px) {
+  .footer {
+    padding: 4rem 0 2rem;
+  }
+
+  .gridRow {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .colRight {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .colRightBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .container {
+    gap: 4rem;
+  }
+
+  .tagline {
+    display: none;
+  }
+
+  .navLinks {
+    gap: 0.8rem;
+  }
+
+  .navLinks a {
+    font-size: 24px;
+  }
+
+  .topRightIcon {
+    display: none;
+  }
+
+  .emailContainer {
+    margin: 1rem 0;
+    align-items: flex-start;
+  }
+
+  .emailText {
+    font-size: clamp(1rem, 5vw, 1.6rem);
+    word-break: break-all;
+  }
+
+  .address {
+    text-align: left;
+    order: 1;
+  }
+
+  .bottomLeft {
+    order: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .policyLinks {
+    order: 2;
+    gap: 1.5rem;
+  }
+
+  .copyright {
+    order: 1;
+  }
+
+  .bottomRight {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1rem;
+    margin-top: 1rem;
+  }
+
+  .mobileDiamondIcon {
+    display: block;
+    margin-top: 0.5rem;
+  }
+}
+
+.developerSignature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.devLogoLink {
+  display: inline-flex;
+  align-items: center;
+}
+
+.devLogo {
+  height: 30px;
+  width: auto;
+  opacity: 0.85;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.devLogoLink:hover .devLogo {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+.emailBlur {
+  display: inline-flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .developerSignature {
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .devLogo {
+    height: 28px;
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+
+  .emailText {
+    font-size: clamp(1rem, 5vw, 1.6rem);
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,51 @@
+/* ── Map Wrapper — light background matching reference ── */
+.mapWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 4rem 0;
+}
+
+/* ── SVG Tooltip ── */
+.svgTooltip {
+  background: rgba(42, 42, 42, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 8px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  position: relative;
+  width: 144px;
+  pointer-events: none;
+}
+
+/* Downward arrow */
+.tooltipArrow {
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid rgba(14, 14, 14, 0.92);
+}
+
+.tooltipCountry {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #F05C46;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.tooltipInfo {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-family: inherit;
+  white-space: nowrap;
+}

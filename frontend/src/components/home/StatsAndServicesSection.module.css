@@ -1,0 +1,151 @@
+/* ── Stats And Services Section ───────────────── */
+.section {
+  padding-block: var(--space-xl, 80px);
+  background-color: #ffffff;
+  color: #000;
+}
+
+.topContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  gap: 2rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+  max-width: 800px;
+  letter-spacing: -0.06em;
+}
+
+.moreBtn {
+  background: transparent;
+  color: #000;
+  border: 1px solid #e0e0e0;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.moreBtn:hover {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.statsContainer {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 2rem;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.statBox h3 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.statBox p {
+  color: #000;
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .imageWrapper img {
+  transform: scale(1.05);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #000;
+  padding-bottom: 1rem;
+}
+
+.cardHeader h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.card:hover .arrow {
+  transform: translateX(5px) rotate(-45deg);
+}
+
+.cardContent p {
+  margin-top: 1rem;
+  color: #000;
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.5;
+}
+
+@media (max-width: 1023px) {
+  .section { padding-block: var(--space-lg, 48px); }
+  .header { flex-direction: column; }
+  .cardsContainer { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 767px) {
+  .section { padding-block: calc(var(--space-lg, 48px) * 0.75); }
+  .cardsContainer { grid-template-columns: 1fr; }
+  .statsContainer { gap: 1.5rem; }
+}
