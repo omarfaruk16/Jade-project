@@ -118,49 +118,53 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
     <div className={`${styles.navbarWrapper} ${!visible ? styles.navbarHidden : ''}`}>
       <nav className={styles.navbar}>
 
-        <Link href="/" className={styles.logo} onMouseEnter={closeAllMenus}>
-          <img src="/images/jadelogo.png" alt="Jade" className={styles.logoImg} />
-        </Link>
+        <div className={styles.navLeft}>
+          <Link href="/" className={styles.logo} onMouseEnter={closeAllMenus}>
+            <img src="/images/jadelogo.png" alt="Jade" className={styles.logoImg} />
+          </Link>
 
-        <div className={styles.leftNav}>
-          <Link href="/import-export" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
-            Export/Import <ArrowUpRight className={styles.icon} />
-          </Link>
-          <Link href="/dealer" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
-            Be a dealer <ArrowUpRight className={styles.icon} />
-          </Link>
-          <Link href="/promotion" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
-            Promotion <ArrowUpRight className={styles.icon} />
-          </Link>
+          <div className={styles.navLeftLinks}>
+            <Link href="/import-export" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
+              Export/Import <ArrowUpRight className={styles.icon} />
+            </Link>
+            <Link href="/dealer" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
+              Be a dealer <ArrowUpRight className={styles.icon} />
+            </Link>
+            <Link href="/promotion" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
+              Promotion <ArrowUpRight className={styles.icon} />
+            </Link>
+          </div>
         </div>
 
         <div className={styles.rightNav}>
-          <div
-            className={styles.dropdownContainer}
-            onMouseEnter={handleServicesEnter}
-            onMouseLeave={handleServicesLeave}
-          >
-            <Link href="/services" className={styles.navLink}>
-              Services <ChevronDown className={styles.icon} style={{ transform: showServices ? 'rotate(180deg)' : 'none' }} />
-            </Link>
-          </div>
+          <div className={styles.navLinkGroup}>
+            <div
+              className={styles.dropdownContainer}
+              onMouseEnter={handleServicesEnter}
+              onMouseLeave={handleServicesLeave}
+            >
+              <Link href="/services" className={`${styles.navLink} ${styles.navLinkDimmed}`}>
+                Services <ChevronDown className={styles.icon} style={{ transform: showServices ? 'rotate(180deg)' : 'none' }} />
+              </Link>
+            </div>
 
-          <div
-            className={styles.dropdownContainer}
-            onMouseEnter={handleProductsEnter}
-            onMouseLeave={handleProductsLeave}
-          >
-            <Link href="/products" className={styles.navLink}>
-              Products <ChevronDown className={styles.icon} style={{ transform: showProducts ? 'rotate(180deg)' : 'none' }} />
-            </Link>
-          </div>
+            <div
+              className={styles.dropdownContainer}
+              onMouseEnter={handleProductsEnter}
+              onMouseLeave={handleProductsLeave}
+            >
+              <Link href="/products" className={`${styles.navLink} ${styles.navLinkDimmed}`}>
+                Products <ChevronDown className={styles.icon} style={{ transform: showProducts ? 'rotate(180deg)' : 'none' }} />
+              </Link>
+            </div>
 
-          {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} className={styles.navLink} onMouseEnter={closeAllMenus}>
-              {link.name}
-            </Link>
-          ))}
-          <button className={styles.ctaButton} onMouseEnter={closeAllMenus}>Book a Call</button>
+            <Link href="/projects" className={styles.navLink} onMouseEnter={closeAllMenus}>Projects</Link>
+            <Link href="/about" className={styles.navLink} onMouseEnter={closeAllMenus}>About us</Link>
+          </div>
+          <div className={styles.navButtonGroup}>
+            <Link href="/contact" className={styles.navLink} onMouseEnter={closeAllMenus}>Contact</Link>
+            <button className={styles.ctaButton} onMouseEnter={closeAllMenus}>Book a Call</button>
+          </div>
         </div>
 
         <button className={styles.mobileMenuBtn} onClick={toggleMenu} aria-label="Toggle Menu">

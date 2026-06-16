@@ -18,8 +18,9 @@ import SectionReveal from '@/components/layout/SectionReveal';
 
 export default function Home() {
   return (
-    <SmoothScroll>
+    <>
       <Navbar />
+      <SmoothScroll>
       <main>
         <HeroSection />
         <SectionReveal><AboutSection /></SectionReveal>
@@ -36,5 +37,6 @@ export default function Home() {
       </main>
       <Footer />
     </SmoothScroll>
+    </>
   );
 }
