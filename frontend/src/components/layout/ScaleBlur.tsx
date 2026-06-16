@@ -50,7 +50,7 @@ export default function ScaleBlur({ text = "", stagger = 0.05, className = "", d
           ))}
           {wi < words.length - 1 && (
             <motion.span
-              style={{ display: "inline-block", width: "0.3em" }}
+              style={{ display: "inline-block", width: "0.2em" }}
               variants={charVariants}
             >
               {"\u00A0"}

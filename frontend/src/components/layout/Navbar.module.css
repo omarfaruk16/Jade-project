@@ -5,14 +5,40 @@
   right: 24px;
   z-index: 100;
   pointer-events: none;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s ease;
 }
 
 .navbarHidden {
   transform: translateY(-150%);
   opacity: 0;
 }
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 70px;
+  width: 100%;
+  padding: 12px 12px 12px 32px;
+  border-radius: 20px;
+  box-sizing: border-box; /* Crucial so width: 100% doesn't overflow with padding */
 
+  /* --- ASH GRAY GLASSMORPHISM --- */
+
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* The Blur Effect */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+}
+
+/*
 .navbar {
   display: flex;
   flex-direction: row;
@@ -27,7 +53,7 @@
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   gap: 70px;
 }
-
+*/
 .logo {
   text-decoration: none;
   display: flex;
@@ -177,7 +203,7 @@
   flex-direction: column;
 }
 
-.megaMenuGroup+.megaMenuGroup {
+.megaMenuGroup + .megaMenuGroup {
   margin-top: 1.2rem;
   padding-top: 1.2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -200,7 +226,10 @@
   padding: 0.3rem 0 0.3rem 1rem;
   display: block;
   position: relative;
-  transition: color 0.2s ease, padding-left 0.2s ease, font-weight 0.1s ease;
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease,
+    font-weight 0.1s ease;
   border-left: 2px solid rgba(255, 255, 255, 0.25);
 }
 
@@ -312,7 +341,9 @@
   align-items: center;
   justify-content: center;
   color: #fff;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .productCategoryCard:hover .productCategoryBtn {
@@ -377,14 +408,14 @@
   width: 100%;
 }
 
-.mobileLinks>a {
+.mobileLinks > a {
   font-size: 1.6rem;
   font-weight: 400;
   color: #fff;
   text-decoration: none;
 }
 
-.mobileLinks>a:hover {
+.mobileLinks > a:hover {
   opacity: 0.7;
 }
 
@@ -466,7 +497,6 @@
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     opacity: 0.4;

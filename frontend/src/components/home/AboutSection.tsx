@@ -22,7 +22,7 @@ export default function AboutSection() {
         <div className={styles.header}>
           <TitleReveal>
             <h2 className={styles.title}>
-              Jade blends calm and character -
+              Jade blends calm and character <span className={styles.titleDash}></span>{' '}
               creating beautifully crafted interiors.
             </h2>
           </TitleReveal>
