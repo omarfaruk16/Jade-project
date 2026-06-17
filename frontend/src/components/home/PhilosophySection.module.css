@@ -3,6 +3,7 @@
   border-top: 1px solid #f2f2f2;
   border-bottom: 1px solid #f2f2f2;
   font-family: var(--font-geist-sans), 'Geist', sans-serif;
+  padding-block: 100px 50px;
 }
 
 .content {
@@ -21,7 +22,7 @@
 }
 
 .textSide p {
-  font-size: 1.15rem;
+  font-size: 1rem;
   line-height: 1.5;
   color: #000;
   font-weight: 500;

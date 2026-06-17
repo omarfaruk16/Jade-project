@@ -127,7 +127,10 @@ export default function ProjectsSection() {
                   </div>
                 </div>
                 <div className={styles.cardFooter}>
-                  <span className={styles.cardTitle}>{project.title}</span>
+                  <div className={styles.titleWrapper}>
+                    <span className={styles.cardTitle}>{project.title}</span>
+                    <span className={styles.cardTitle}>{project.title}</span>
+                  </div>
                   <span className={styles.cardDate}>{project.date}</span>
                 </div>
               </Link>

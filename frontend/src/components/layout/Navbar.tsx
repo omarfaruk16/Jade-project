@@ -124,14 +124,26 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
           </Link>
 
           <div className={styles.navLeftLinks}>
-            <Link href="/import-export" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
-              Export/Import <ArrowUpRight className={styles.icon} />
+            <Link href="/import-export" className={`${styles.navLink} ${styles.iconLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
+              <span className={styles.linkContent}>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconBefore}`} />
+                <span>Export/Import</span>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconAfter}`} />
+              </span>
             </Link>
-            <Link href="/dealer" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
-              Be a dealer <ArrowUpRight className={styles.icon} />
+            <Link href="/dealer" className={`${styles.navLink} ${styles.iconLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
+              <span className={styles.linkContent}>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconBefore}`} />
+                <span>Be a dealer</span>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconAfter}`} />
+              </span>
             </Link>
-            <Link href="/promotion" className={`${styles.navLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
-              Promotion <ArrowUpRight className={styles.icon} />
+            <Link href="/promotion" className={`${styles.navLink} ${styles.iconLink} hidden md:flex`} onMouseEnter={closeAllMenus}>
+              <span className={styles.linkContent}>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconBefore}`} />
+                <span>Promotion</span>
+                <ArrowUpRight className={`${styles.icon} ${styles.iconAfter}`} />
+              </span>
             </Link>
           </div>
         </div>

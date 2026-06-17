@@ -18,7 +18,7 @@ export default function PhilosophySection() {
         <div className="jade-container">
           <div className={styles.content}>
             <div className={styles.textSide}>
-              <p>Each project is a reflection of our design philosophym intentional, timeless, and tailored.</p>
+              <p>Each project is a reflection of our design philosophy — intentional, timeless, and tailored.</p>
             </div>
             <div className={styles.marqueeWrapper}>
               <div className={styles.marquee}>
