@@ -1,13 +1,14 @@
 /* ── Team Section ──────────────────────────────── */
 .section {
   padding-block: var(--space-xl, 80px);
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .container {
   background: #ffffff;
   border-radius: 24px;
   padding-block: var(--space-xl, 80px);
+  padding-inline: 60px;
 }
 
 .header {
@@ -39,7 +40,7 @@
 .teamGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 1.2rem;
+  gap: 10px;
   margin-bottom: 4rem;
 }
 

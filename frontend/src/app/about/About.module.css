@@ -13,7 +13,7 @@
 }
 
 .pageWrapper {
-  background: #ffffff;
+  background: rgb(247, 247, 247);
   min-height: 100vh;
   color: #000;
 }
@@ -22,50 +22,50 @@
   width: 100%;
   max-width: var(--container-max, 1600px);
   margin: 0 auto;
-  padding-inline: clamp(24px, 6vw, 48px);
+  padding-inline: 24px;
   box-sizing: border-box;
-  background: white;
+  background: rgb(247, 247, 247);
 }
 
 /* Header Section */
 .heroOuterWrapper {
   padding: 6px;
-  background: #ffffff;
+  background: rgb(247, 247, 247);
 }
 
 .headerSection {
   padding-top: 10rem;
   text-align: center;
   max-width: 100%;
-  margin: 0 auto 6rem;
+  margin: 0 auto 3rem;
   border-radius: 12px;
 }
 
 .pageTitle {
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: 4rem;
   font-weight: 500;
   letter-spacing: -0.05em;
-  line-height: 1.1em;
+  line-height: 70px;
   margin-bottom: 0.5rem;
   word-break: break-word;
   overflow-wrap: break-word;
 }
 
 .pageSubtitle {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 1.5;
+  letter-spacing: 0.04rem;
+  line-height: 1.5rem;
   color: #000;
   max-width: 900px;
   margin: 0 auto 4rem;
 }
 
 .sectionTitle {
-  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-size: 3.5rem;
   font-weight: 500;
   letter-spacing: -0.06em;
-  line-height: 1.2em;
+  line-height: 3.125rem;
   margin-bottom: 1.5rem;
 }
 
@@ -79,25 +79,53 @@
   margin: 0 auto;
 }
 
+.clientLogosSection {
+  margin-top: 80px;
+  margin-bottom: 2.5rem;
+}
+
+.clientLogosTitle {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 70px;
+  margin-bottom: 0.5rem;
+}
+
+.clientLogosSub {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.04rem;
+  line-height: 1.5rem;
+  color: #000;
+  max-width: 900px;
+  margin: 0 auto 4rem;
+}
+
 .heroLogos {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  margin-bottom: 2.5rem;
+}
+
+.heroGridWrapper {
+  position: relative;
 }
 
 .heroImagesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
+  gap: 10px;
 }
 
 .imageCol {
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 4/3;
   /* Square ratio matching the screenshot */
-  border-radius: 12px;
+  border-radius: 6px;
   overflow: hidden;
   position: relative;
   transition: all 0.3s ease;
@@ -146,17 +174,13 @@
   right: 1rem;
 }
 
-.mobileOnlyNav {
-  display: none;
-}
-
 .sliderDots {
   position: absolute;
   bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  gap: 10px;
   z-index: 10;
   background: rgba(0, 0, 0, 0.2);
   padding: 6px 12px;
@@ -182,9 +206,9 @@
 .milestoneSection {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-  padding: 6rem 0 2rem;
-  background: #ffffff;
+  gap: 36px;
+  padding: 2.25rem 0 2rem;
+  background: rgb(247, 247, 247);
 }
 
 .milestoneTop {
@@ -195,8 +219,9 @@
 }
 
 .milestoneHeader .label {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.045rem;
   color: #000;
   display: block;
   margin-bottom: 1rem;
@@ -247,7 +272,7 @@
 }
 
 .year {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1.25rem;
   color: #000;
 }
@@ -257,7 +282,7 @@
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: 4rem;
-  padding: 8rem 0;
+  padding: 8rem 0 4rem;
 }
 
 .philosophyLeft {
@@ -267,9 +292,10 @@
 }
 
 .philosophyText {
-  font-size: 1.125rem;
+  font-size: 16px;
   color: #000;
-  line-height: 1.7;
+  line-height: 24px;
+  letter-spacing: -0.64px;
   margin-bottom: 2rem;
 }
 
@@ -307,22 +333,22 @@
 .philImgSmall {
   width: 100%;
   flex: 1;
-  min-height: 200px;
+  min-height: 240px;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 .philImgTall {
   width: 100%;
   height: 100%;
-  min-height: 400px;
+  min-height: 480px;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 /* Client Voices Section */
 .clientVoicesSection {
-  padding: 6rem 0;
+  padding: 3rem 0 6rem;
 }
 
 .voicesHeader {
@@ -395,7 +421,7 @@
 
 /* Team Section */
 .teamSection {
-  background: #fbfbfb;
+  background: rgb(247, 247, 247);
   border-radius: 24px;
   padding: 4rem;
   margin-top: 6rem;
@@ -515,6 +541,18 @@
 }
 
 /* Responsiveness */
+@media (min-width: 1441px) {
+  .container {
+    padding-inline: 44px;
+  }
+
+  .pageTitle {
+    font-size: 5rem; /* 80px */
+    line-height: 65px;
+    letter-spacing: -0.04em;
+  }
+}
+
 @media (max-width: 1024px) {
   .testimonialsGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -549,29 +587,13 @@
   }
 
   .heroImagesGrid {
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-    gap: 1rem;
-    padding-bottom: 1rem;
-  }
-
-  .desktopOnlyNav {
-    display: none;
-  }
-
-  .mobileOnlyNav {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 
   .imageCol {
-    flex: 0 0 100%;
-    scroll-snap-align: center;
-  }
-
-  .heroImagesGrid .imageCol:first-child,
-  .heroImagesGrid .imageCol:last-child {
-    display: none;
+    aspect-ratio: 4/3;
   }
 
   .teamSection {
@@ -601,6 +623,6 @@
   }
 
   .clientVoicesSection {
-    padding: 2rem 0;
+    padding: 1rem 0 2rem;
   }
 }

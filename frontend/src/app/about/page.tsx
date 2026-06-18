@@ -9,6 +9,7 @@ import { CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionReveal from '@/components/layout/SectionReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 import TeamSection from '@/components/home/TeamSection';
 import LogoMarquee from '@/components/common/LogoMarquee';
 
@@ -35,10 +36,11 @@ export default function AboutPage() {
   const handlePrev = () => setActiveIndex(p => (p === 0 ? heroMedia.length - 1 : p - 1));
 
   const getVisibleIndices = () => {
-    const left = activeIndex === 0 ? heroMedia.length - 1 : activeIndex - 1;
-    const center = activeIndex;
-    const right = (activeIndex + 1) % heroMedia.length;
-    return [left, center, right];
+    const indices = [];
+    for (let i = 0; i < 6; i++) {
+      indices.push((activeIndex + i) % heroMedia.length);
+    }
+    return indices;
   };
 
   const visibleIndices = getVisibleIndices();
@@ -64,6 +66,7 @@ export default function AboutPage() {
   }, [heroMedia.length]);
 
   return (
+    <SmoothScroll>
     <div className={styles.pageWrapper}>
       <Navbar />
 
@@ -76,76 +79,60 @@ export default function AboutPage() {
                 <ScaleBlur text="About Us" stagger={0.05} />
               </h1>
               <p className={styles.pageSubtitle}>
-                Jade Kitchen Design Sdn Bhd is a leading kitchen design and cabinet manufacturer in Malaysia, specializing in modern, contemporary, and customized kitchen solutions. Since 2007, we have been delivering high-quality, functional, and stylish kitchens tailored to different lifestyles and budgets. With our own manufacturing facility, we ensure superior craftsmanship, durable materials, and innovative designs that transform homes with practical and elegant kitchen spaces.
+                Jade Kitchen Design Sdn Bhd is a leading kitchen design and cabinet manufacturer in Malaysia, specializing in modern, contemporary, and customized kitchen solutions. Since 2007
               </p>
 
-              <div className={styles.heroLogos}>
-                <LogoMarquee />
+              <div className={styles.heroGridWrapper}>
+                <div className={styles.heroImagesGrid}>
+                  {visibleIndices.map((mediaIndex, i) => {
+                    const media = heroMedia[mediaIndex];
+
+                    return (
+                      <div key={i} className={styles.imageCol}>
+                        <AnimatePresence mode="popLayout">
+                          <motion.div
+                            key={media.id}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.05 }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+                          >
+                            {media.type === 'video' ? (
+                              <video src={media.src} autoPlay muted loop playsInline className={styles.heroMediaEl} />
+                            ) : (
+                              <img src={media.src} alt="" className={styles.heroMediaEl} />
+                            )}
+                          </motion.div>
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <button className={`${styles.sliderNavBtn} ${styles.sliderNavLeft}`} onClick={handlePrev}>
+                  <ChevronLeft size={24} />
+                </button>
+                <button className={`${styles.sliderNavBtn} ${styles.sliderNavRight}`} onClick={handleNext}>
+                  <ChevronRight size={24} />
+                </button>
+                <div className={styles.sliderDots}>
+                  {heroMedia.map((_, dotIdx) => (
+                    <span
+                      key={dotIdx}
+                      className={`${styles.dot} ${activeIndex === dotIdx ? styles.dotActive : ''}`}
+                      onClick={() => setActiveIndex(dotIdx)}
+                    />
+                  ))}
+                </div>
               </div>
 
-              <div className={styles.heroImagesGrid}>
-                {visibleIndices.map((mediaIndex, i) => {
-                  const media = heroMedia[mediaIndex];
-                  const isLeft = i === 0;
-                  const isCenter = i === 1;
-                  const isRight = i === 2;
-
-                  return (
-                    <div key={i} className={styles.imageCol}>
-                      <AnimatePresence mode="popLayout">
-                        <motion.div
-                          key={media.id}
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 1.05 }}
-                          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                          style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
-                        >
-                          {media.type === 'video' ? (
-                            <video src={media.src} autoPlay muted loop playsInline className={styles.heroMediaEl} />
-                          ) : (
-                            <img src={media.src} alt="" className={styles.heroMediaEl} />
-                          )}
-                        </motion.div>
-                      </AnimatePresence>
-
-                      {/* Left Arrow on Left Image (Desktop) */}
-                      {isLeft && (
-                        <button className={`${styles.sliderNavBtn} ${styles.sliderNavLeft} ${styles.desktopOnlyNav}`} onClick={handlePrev}>
-                          <ChevronLeft size={24} />
-                        </button>
-                      )}
-
-                      {/* Right Arrow on Right Image (Desktop) */}
-                      {isRight && (
-                        <button className={`${styles.sliderNavBtn} ${styles.sliderNavRight} ${styles.desktopOnlyNav}`} onClick={handleNext}>
-                          <ChevronRight size={24} />
-                        </button>
-                      )}
-
-                      {/* Center Image UI */}
-                      {isCenter && (
-                        <>
-                          <button className={`${styles.sliderNavBtn} ${styles.sliderNavLeft} ${styles.mobileOnlyNav}`} onClick={handlePrev}>
-                            <ChevronLeft size={24} />
-                          </button>
-                          <button className={`${styles.sliderNavBtn} ${styles.sliderNavRight} ${styles.mobileOnlyNav}`} onClick={handleNext}>
-                            <ChevronRight size={24} />
-                          </button>
-                          <div className={styles.sliderDots}>
-                            {heroMedia.map((_, dotIdx) => (
-                              <span
-                                key={dotIdx}
-                                className={`${styles.dot} ${activeIndex === dotIdx ? styles.dotActive : ''}`}
-                                onClick={() => setActiveIndex(dotIdx)}
-                              />
-                            ))}
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  );
-                })}
+              <div className={styles.clientLogosSection}>
+                <h2 className={styles.clientLogosTitle}>Our Clients</h2>
+                <p className={styles.clientLogosSub}>We are proud of contributing to the success of world leading brand.</p>
+                <div className={styles.heroLogos}>
+                  <LogoMarquee />
+                </div>
               </div>
             </section>
           </div>
@@ -307,5 +294,6 @@ export default function AboutPage() {
       </main>
       <Footer />
     </div>
+    </SmoothScroll>
   );
 }

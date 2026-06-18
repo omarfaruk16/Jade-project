@@ -1,40 +1,35 @@
-.marqueeContainer {
-  position: relative;
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  align-items: center;
+  justify-items: center;
   width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  /* Edge fade – logos appear from left, vanish at right */
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-}
-
-.marqueeContent {
-  display: flex;
-  gap: 2.5rem;
-  align-items: center;
-  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .logoItem {
-  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 28px;        /* compact — matches reference screenshot */
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 100px;
+  width: 100%;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0 1.5rem;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.logoItem:nth-child(4n) {
+  border-right: none;
+}
+
+.logoItem:nth-last-child(-n+4) {
+  border-bottom: none;
 }
 
 .logoImage {
@@ -42,21 +37,28 @@
   width: auto;
   max-width: 110px;
   object-fit: contain;
-  /* No overlay — show logos exactly as uploaded */
   display: block;
-  transition: transform 0.5s ease;
+  filter: grayscale(100%) brightness(0.4);
+  transition: filter 0.3s ease;
 }
 
-.logoItem:hover {
-  transform: scale(1.1);
+.logoItem:hover .logoImage {
+  filter: grayscale(0%) brightness(1);
 }
 
-/* ── Mobile ── */
 @media (max-width: 768px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
   .logoItem {
     height: 24px;
   }
-  .marqueeContent {
-    gap: 2rem;
+}
+
+@media (max-width: 480px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }
