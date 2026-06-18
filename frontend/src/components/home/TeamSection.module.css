@@ -1,7 +1,7 @@
 /* ── Team Section ──────────────────────────────── */
 .section {
   padding-block: var(--space-xl, 80px);
-
+  margin-bottom: 4rem;
 }
 
 .container {

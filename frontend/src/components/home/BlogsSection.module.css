@@ -61,19 +61,20 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .featuredCard {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
+  height: 100%;
 }
 
 .featuredLink {
   display: block;
   position: relative;
-  aspect-ratio: 4/3;
+  height: 100%;
   text-decoration: none;
   overflow: hidden;
   border-radius: 16px;
@@ -161,6 +162,7 @@
   border-radius: 14px;
   text-decoration: none;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  flex: 1;
 }
 
 .listContentLeft {

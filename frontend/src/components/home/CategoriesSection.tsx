@@ -68,6 +68,7 @@ export default function CategoriesSection() {
     <SectionReveal>
       <section className={styles.expertiseSection}>
         <div className={styles.expertiseContainer}>
+          <div className={`jade-container ${styles.innerContainer}`}>
           <div className={styles.expertiseHeader}>
             <h2>Our expertise</h2>
             <p>
@@ -128,6 +129,7 @@ export default function CategoriesSection() {
                 </div>
               );
             })}
+          </div>
           </div>
         </div>
       </section>

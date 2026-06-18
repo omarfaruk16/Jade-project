@@ -12,9 +12,9 @@
 
 .title {
   flex: 1.2;
-  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-size: clamp(2rem, 4.25vw, 4.25rem);
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.5;
   letter-spacing: -0.05em;
   margin: 0;
   max-width: 800px;

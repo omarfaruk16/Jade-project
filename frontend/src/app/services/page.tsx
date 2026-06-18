@@ -38,6 +38,7 @@ export default function ServicesPage() {
   );
 
   return (
+    <>
     <div className={styles.indexPage}>
       <Navbar />
       <div className={styles.indexHero}>
@@ -58,8 +59,9 @@ export default function ServicesPage() {
           </div>
         ))}
       </div>
-      <Footer />
     </div>
+      <Footer />
+    </>
   );
 }
 

@@ -1,13 +1,18 @@
 .expertiseSection {
   background: #f5f5f5;
   padding: 5px;
+  margin-bottom: 100px;
 }
 
 .expertiseContainer {
   background: #000;
   color: #fff;
   border-radius: 28px;
-  padding: 90px 38px;
+  padding: 90px 0;
+}
+
+.innerContainer {
+  width: 100%;
 }
 
 .expertiseHeader {
@@ -25,9 +30,10 @@
 
 .expertiseHeader p {
   color: #8b8b8b;
-  margin-top: 1.6rem;
+  margin-top: 0.8rem;
   line-height: 1.6;
   font-size: 1rem;
+  letter-spacing: -0.02em;
 }
 
 .expertiseItem {
@@ -42,7 +48,7 @@
 .itemGrid {
   display: grid;
   grid-template-columns: 50px 1fr 2fr 180px;
-  gap: 32px;
+  gap: 16px;
   align-items: stretch;
   transition: grid-template-columns 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -57,8 +63,8 @@
 }
 
 .itemImage {
-  width: 9rem;
-  height: 6rem;
+  width: 100px;
+  height: 5rem;
   object-fit: cover;
   border-radius: 8px;
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
@@ -70,13 +76,16 @@
 }
 
 .itemContent h3 {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 400;
   margin-bottom: 12px;
+  line-height: 1.875em;
+  letter-spacing: -0.03em;
 }
 
 .itemContent>p {
   color: #8b8b8b;
+  font-size: 1rem;
 }
 
 .itemDetails {
@@ -110,6 +119,7 @@
 .itemDetails p {
   color: #8b8b8b;
   line-height: 1.6;
+  font-size: 1rem;
 }
 
 .itemAction {
@@ -168,7 +178,7 @@
     padding: 50px 24px;
   }
 
-  .expertiseItem {
+.expertiseItem {
     position: relative;
   }
 

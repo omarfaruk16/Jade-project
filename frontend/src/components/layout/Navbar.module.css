@@ -25,15 +25,10 @@
   border-radius: 20px;
   box-sizing: border-box; /* Crucial so width: 100% doesn't overflow with padding */
 
-  /* --- ASH GRAY GLASSMORPHISM --- */
-
   background: rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
-
-  /* The Blur Effect */
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   pointer-events: auto;
 }
