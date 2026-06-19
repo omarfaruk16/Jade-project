@@ -1,7 +1,7 @@
 .pageWrapper {
-  background: #fff;
+  background: rgb(0, 0, 0);
   min-height: 100vh;
-  color: #000;
+  color: #fff;
 }
 
 .container {
@@ -14,9 +14,15 @@
 
 /* Hero */
 .heroSection {
-  padding: 12rem 4rem 5rem;
+  padding: 12rem 4rem 2rem;
   text-align: center;
-  background: linear-gradient(180deg, #f5f5f5 0%, #fff 100%);
+  background: rgb(0, 0, 0);
+}
+
+.icon {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .heroTitle {
@@ -31,7 +37,7 @@
 .heroSub {
   font-size: 1.125rem;
   letter-spacing: 0em;
-  color: #000;
+  color: #fff;
   max-width: 550px;
   margin: 0 auto;
   line-height: 1.5;
@@ -42,32 +48,31 @@
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  padding: 4rem 0 3rem;
+  padding: 3rem 0 0;
   flex-wrap: wrap;
 }
 
 .catTab {
   padding: 0.6rem 1.5rem;
   border-radius: 50px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #555;
   background: transparent;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #000;
+  color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: inherit;
 }
 
 .catTab:hover {
-  border-color: #000;
-  color: #000;
+  border-color: #fff;
 }
 
 .catTabActive {
-  background: #000;
-  color: #fff;
-  border-color: #000;
+  background: #fff;
+  color: #000;
+  border-color: #fff;
 }
 
 /* Products Grid */
@@ -132,7 +137,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #000;
+  color: #666;
   margin-bottom: 0.3rem;
 }
 
@@ -145,7 +150,7 @@
 
 .productPrice {
   font-size: 0.95rem;
-  color: #000;
+  color: #666;
   font-weight: 500;
 }
 
@@ -164,7 +169,14 @@
   position: absolute;
   inset: 0;
   background: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
-  filter: brightness(0.5);
+}
+
+.showcaseSection::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
 }
 
 .showcaseContent {
@@ -208,7 +220,20 @@
   box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
 }
 
+/* PC and greater */
+@media (min-width: 1442px) {
+  .showcaseSection {
+    height: 100vh;
+  }
+}
+
 /* Responsive */
+@media (max-width: 1080px) {
+  .showcaseSection {
+    height: 80vh;
+  }
+}
+
 @media (max-width: 1024px) {
   .productsGrid {
     grid-template-columns: repeat(2, 1fr);

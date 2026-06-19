@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import API_BASE from '@/lib/api';
 import { Lock } from 'lucide-react';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('');
@@ -34,6 +35,7 @@ export default function AdminLogin() {
   };
 
   return (
+    <SmoothScroll>
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'radial-gradient(circle at top left, #111, #000)', color: '#fff', fontFamily: 'Geist, sans-serif' }}>
       <div style={{ position: 'absolute', top: '10%', left: '10%', width: '300px', height: '300px', background: 'rgba(52, 211, 153, 0.05)', filter: 'blur(100px)', borderRadius: '50%' }}></div>
       <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: '300px', height: '300px', background: 'rgba(251, 146, 60, 0.05)', filter: 'blur(100px)', borderRadius: '50%' }}></div>
@@ -129,5 +131,6 @@ export default function AdminLogin() {
         </div>
       </form>
     </div>
+    </SmoothScroll>
   );
 }

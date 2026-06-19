@@ -13,6 +13,7 @@ import styles from './ProjectDetails.module.css';
 import SectionReveal from '@/components/layout/SectionReveal';
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 interface ProcessStep {
   title: string;
@@ -85,6 +86,7 @@ export default function ProjectDetails() {
   );
 
   return (
+    <SmoothScroll>
     <div className={styles.pageWrapper}>
       <Navbar />
 
@@ -264,5 +266,6 @@ export default function ProjectDetails() {
       </div>
       <Footer />
     </div>
+    </SmoothScroll>
   );
 }

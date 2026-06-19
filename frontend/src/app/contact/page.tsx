@@ -11,6 +11,7 @@ import FaqSection from '@/components/home/FaqSection';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -48,6 +49,7 @@ export default function ContactPage() {
   };
 
   return (
+    <SmoothScroll>
     <div className={styles.pageWrapper}>
       <Navbar />
 
@@ -132,5 +134,6 @@ export default function ContactPage() {
 
       <Footer />
     </div>
+    </SmoothScroll>
   );
 }

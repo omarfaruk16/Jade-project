@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './Products.module.css';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 export default function ProductsOverviewPage() {
   const [categories, setCategories] = useState<any[]>([]);
@@ -38,11 +39,20 @@ export default function ProductsOverviewPage() {
   );
 
   return (
+    <SmoothScroll>
     <div className={styles.pageWrapper}>
       <Navbar />
 
       {/* Hero */}
       <section className={styles.heroSection}>
+        <div className={styles.icon}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="6" r="2.5" fill="#fff" />
+            <circle cx="12" cy="18" r="2.5" fill="#fff" />
+            <circle cx="6" cy="12" r="2.5" fill="#fff" />
+            <circle cx="18" cy="12" r="2.5" fill="#fff" />
+          </svg>
+        </div>
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -117,6 +127,14 @@ export default function ProductsOverviewPage() {
       <div className={styles.showcaseSection}>
         <div className={styles.showcaseBg} />
         <div className={styles.showcaseContent}>
+          <div className={styles.icon}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="6" r="2.5" fill="#fff" />
+              <circle cx="12" cy="18" r="2.5" fill="#fff" />
+              <circle cx="6" cy="12" r="2.5" fill="#fff" />
+              <circle cx="18" cy="12" r="2.5" fill="#fff" />
+            </svg>
+          </div>
           <h2 className={styles.showcaseTitle}>Designed for Every Space</h2>
           <p className={styles.showcaseDesc}>
             From modern minimalist to classic luxury — find the perfect kitchen solution for your lifestyle.
@@ -129,5 +147,6 @@ export default function ProductsOverviewPage() {
 
       <Footer />
     </div>
+    </SmoothScroll>
   );
 }

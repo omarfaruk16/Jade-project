@@ -10,6 +10,7 @@ import styles from './Promotion.module.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 export default function PromotionPage() {
   const [promotions, setPromotions] = useState<any[]>([]);
@@ -34,6 +35,7 @@ export default function PromotionPage() {
   }, []);
 
   return (
+    <SmoothScroll>
     <div className={styles.pageWrapper}>
       <Navbar />
 
@@ -97,5 +99,6 @@ export default function PromotionPage() {
 
       <Footer />
     </div>
+    </SmoothScroll>
   );
 }

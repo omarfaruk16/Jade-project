@@ -13,6 +13,7 @@ import SectionReveal from '@/components/layout/SectionReveal';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 const QuoteIcon = () => (
   <svg viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg" width="14" height="12">
     <path d="M4.5 0C2.01472 0 0 2.01472 0 4.5V11.5H5.5V6H2.5C2.5 4.89543 3.39543 4 4.5 4V0Z" fill="#fff" />
@@ -100,6 +101,7 @@ export default function ServiceChildPage() {
   if (!data || data.error) return <div className={styles.loading}>Service not found.</div>;
 
   return (
+    <SmoothScroll>
     <div className={styles.pageWrapper}>
       <Navbar visible={!showSubNav} />
 
@@ -279,5 +281,6 @@ export default function ServiceChildPage() {
 
       <Footer />
     </div>
+    </SmoothScroll>
   );
 }

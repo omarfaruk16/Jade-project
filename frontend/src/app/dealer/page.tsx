@@ -15,6 +15,7 @@ import DreamSection from '@/components/home/DreamSection';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 interface Partner {
   id: string;
@@ -91,6 +92,7 @@ export default function DealerPage() {
   };
 
   return (
+    <SmoothScroll>
     <main className={styles.dealerPage}>
       <Navbar />
 
@@ -343,5 +345,6 @@ export default function DealerPage() {
 
       <Footer />
     </main>
+    </SmoothScroll>
   );
 }

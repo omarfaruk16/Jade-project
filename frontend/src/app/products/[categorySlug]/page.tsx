@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import SectionReveal from '@/components/layout/SectionReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
 import TitleReveal from '@/components/layout/TitleReveal';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 export default function ProductCategoryPage() {
   const { categorySlug } = useParams() as { categorySlug: string };
@@ -34,6 +35,7 @@ export default function ProductCategoryPage() {
   if (!category) return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0a0a0c', color: '#fff' }}>Category not found</div>;
 
   return (
+    <SmoothScroll>
     <div style={{ background: '#000', minHeight: '100vh' }}>
       <Navbar />
 
@@ -84,5 +86,6 @@ export default function ProductCategoryPage() {
 
       <Footer />
     </div>
+    </SmoothScroll>
   );
 }

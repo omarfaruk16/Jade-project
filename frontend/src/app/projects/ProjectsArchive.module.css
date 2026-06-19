@@ -6,7 +6,7 @@
 }
 
 .headerSection {
-  padding: 150px 24px 140px 24px;
+  padding: 150px 24px 100px 24px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
 .title {
   font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 500;
-  letter-spacing: -0.05em;
+  letter-spacing: -5px;
   line-height: 1.1em;
   margin-bottom: 1.5rem;
   word-break: break-word;
@@ -34,7 +34,7 @@
 }
 
 .icon {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .container {
@@ -126,16 +126,42 @@
   padding: 0 0.5rem;
 }
 
+.titleWrapper {
+  position: relative;
+  overflow: hidden;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
 .cardTitle {
+  display: block;
   font-size: 22px;
   font-weight: 400;
   letter-spacing: -0.06em;
   line-height: 1.2em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: transform 0.4s ease;
+}
+
+.cardTitle + .cardTitle {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
+.projectCard:hover .cardTitle:first-child {
+  transform: translateY(-100%);
+}
+
+.projectCard:hover .cardTitle:last-child {
+  transform: translateY(-100%);
 }
 
 .cardDate {
-  font-size: 14px;
-  letter-spacing: 0em;
+  font-size: 16px;
   color: #000;
 }
 

@@ -11,6 +11,7 @@ import styles from './Services.module.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 export default function ServicesPage() {
   const [parents, setParents] = useState<any[]>([]);
@@ -38,6 +39,7 @@ export default function ServicesPage() {
   );
 
   return (
+    <SmoothScroll>
     <>
     <div className={styles.indexPage}>
       <Navbar />
@@ -62,6 +64,7 @@ export default function ServicesPage() {
     </div>
       <Footer />
     </>
+    </SmoothScroll>
   );
 }
 

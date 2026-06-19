@@ -11,6 +11,7 @@ import SectionReveal from '@/components/layout/SectionReveal';
 import styles from './ProductDetails.module.css';
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 const DotsIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,6 +56,7 @@ export default function ProductDetailsPage() {
   const heroImage = product.coverImage || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000';
 
   return (
+    <SmoothScroll>
     <div className={styles.pageWrapper}>
       <Navbar />
 
@@ -271,5 +273,6 @@ export default function ProductDetailsPage() {
 
       <Footer />
     </div>
+    </SmoothScroll>
   );
 }

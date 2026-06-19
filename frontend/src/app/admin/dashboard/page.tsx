@@ -11,6 +11,7 @@ import BlogsAdmin from './BlogsAdmin';
 import ProjectsAdmin from './ProjectsAdmin';
 import styles from './AdminDashboard.module.css';
 import Link from 'next/link';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'projects' | 'promotions' | 'testimonials' | 'team' | 'faq' | 'contact' | 'partners' | 'dealerRequests' | 'contactMessages' | 'services' | 'products' | 'blogs'>('projects');
@@ -191,6 +192,7 @@ export default function AdminDashboard() {
   ];
 
   return (
+    <SmoothScroll>
     <div className={styles.dashboardWrapper}>
       {/* Sidebar Navigation */}
       <aside className={styles.sidebar}>
@@ -483,5 +485,6 @@ export default function AdminDashboard() {
         document.body
       )}
     </div>
+    </SmoothScroll>
   );
 }

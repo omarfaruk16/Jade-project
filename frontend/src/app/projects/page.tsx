@@ -9,6 +9,7 @@ import Navbar from '@/components/layout/Navbar';
 import SectionReveal from '@/components/layout/SectionReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
 import styles from './ProjectsArchive.module.css';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 export default function ProjectsArchive() {
   const [projects, setProjects] = useState<any[]>([]);
@@ -33,6 +34,7 @@ export default function ProjectsArchive() {
   }, []);
 
   return (
+    <SmoothScroll>
     <div className={styles.pageWrapper}>
       <Navbar />
 
@@ -58,14 +60,14 @@ export default function ProjectsArchive() {
         </section>
       </SectionReveal>
 
-      <div className={styles.gridControls}>
+      {/* <div className={styles.gridControls}>
         <span className={styles.count}>({projects.length})</span>
         <div className={styles.filters}>
           <span className={styles.filterItem}>LaunchSimple</span>
           <span className={styles.filterItem}>45 Degrees+</span>
           <span className={styles.filterItem}><Filter size={16} /></span>
         </div>
-      </div>
+      </div> */}
 
       <SectionReveal>
         <div className={styles.projectsGrid}>
@@ -86,7 +88,10 @@ export default function ProjectsArchive() {
                     <img src={p.coverImage} alt={p.title} />
                   </div>
                   <div className={styles.cardFooter}>
-                    <span className={styles.cardTitle}>{p.title}</span>
+                    <div className={styles.titleWrapper}>
+                      <span className={styles.cardTitle}>{p.title}</span>
+                      <span className={styles.cardTitle}>{p.title}</span>
+                    </div>
                     <span className={styles.cardDate}>{p.date}</span>
                   </div>
                 </motion.div>
@@ -96,5 +101,6 @@ export default function ProjectsArchive() {
         </div>
       </SectionReveal>
     </div>
+    </SmoothScroll>
   );
 }

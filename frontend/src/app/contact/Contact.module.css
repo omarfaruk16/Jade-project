@@ -1,5 +1,5 @@
 .pageWrapper {
-  background: #fff;
+  background: rgb(247, 247, 247);
   min-height: 100vh;
   color: #000;
   font-family: inherit;
@@ -17,10 +17,10 @@
 }
 
 .pageTitle {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: 3.5rem;
   font-weight: 500;
-  letter-spacing: -0.05em;
-  line-height: 1.1;
+  letter-spacing: -3.36px;
+  line-height: 1.196em;
   margin-bottom: 0.5rem;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -38,9 +38,9 @@
 .formGrid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 4rem;
+  gap: 3rem;
   margin-bottom: 6rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 /* Info Side */
@@ -48,7 +48,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-top: 2rem;
 }
 
 .infoGrid {
@@ -138,7 +137,7 @@
 
 .submitBtn {
   width: 100%;
-  padding: 1.2rem;
+  padding: 0.8rem 1.2rem;
   background: #000;
   color: #fff;
   border: none;
@@ -262,6 +261,14 @@
   line-height: 1.7;
 }
 
+/* PC and greater: align info side with form side */
+@media (min-width: 1025px) {
+  .infoSide {
+    justify-content: space-between;
+    padding-bottom: 1.5rem;
+  }
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .formGrid {
@@ -271,7 +278,7 @@
 
   .faqSplit {
     grid-template-columns: 1fr;
-    gap: 3rem;
+  gap: 2rem;
   }
 
   .faqImageColumn {

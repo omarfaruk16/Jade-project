@@ -14,6 +14,7 @@ import '@/app/jade-shared.css';
 
 import TitleReveal from '@/components/layout/TitleReveal';
 import ScaleBlur from '@/components/layout/ScaleBlur';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 
 const importExportWhatsIncluded = [
   'Our products are manufactured in accordance with international quality standards, ensuring premium craftsmanship, reliable performance, and long-term value.',
@@ -26,6 +27,7 @@ export default function ImportExportPage() {
 
 
   return (
+    <SmoothScroll>
     <div className={styles.pageWrapper}>
       <Navbar />
 
@@ -217,6 +219,7 @@ export default function ImportExportPage() {
 
       <Footer />
     </div>
+    </SmoothScroll>
   );
 }
 
