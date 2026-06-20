@@ -89,6 +89,15 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
   };
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
+  useEffect(() => {
     Promise.all([
       fetch(`${API_BASE}/services`).then(r => r.json()),
       fetch(`${API_BASE}/products/categories`).then(r => r.json())

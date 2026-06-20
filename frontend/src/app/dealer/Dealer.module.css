@@ -58,11 +58,13 @@
   font-weight: 500;
   letter-spacing: -0.07em;
   line-height: 1.05em;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
   font-family: var(--font-geist-sans), 'Geist', sans-serif;
   color: #ffffff;
   text-align: center;
 }
+
+
 
 .subtitle {
   font-size: 1.125rem;
@@ -78,7 +80,7 @@
 
 /* Intro Section */
 .intro {
-  padding: 3.5rem 0;
+  padding: 3.5rem 0 1.75rem;
   background: #f8f8f8;
 }
 
@@ -91,11 +93,17 @@
 
 .introText {
   font-size: clamp(1.3rem, 2vw, 1.75rem);
-  line-height: 1.2;
+  line-height: 1.18;
   color: #000000;
   font-weight: 400;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.046em;
   margin-bottom: 40px;
+}
+
+.introInfo h4 {
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  line-height: 1.18;
+  letter-spacing: -0.046em;
 }
 
 .founder {
@@ -153,7 +161,7 @@
 
 /* Office Design Detailed Section */
 .officeDesignDetailed {
-  padding: 3rem 0;
+  padding: 4.25rem 0 8rem;
   background: #f8f8f8;
   color: #000;
 }
@@ -162,7 +170,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .officeTitle {
@@ -220,7 +228,7 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
   color: #000;
   align-self: flex-start;
@@ -232,14 +240,20 @@
   gap: 4rem 3rem;
 }
 
+.conceptBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
 .conceptBlock h4 {
   font-size: 1.2rem;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
+  margin: 0;
+  font-weight: 700;
 }
 
 .conceptBlock p {
-  font-size: 14px;
+  font-size: 1rem;
   letter-spacing: 0em;
   line-height: 1.5;
   color: #000;
@@ -469,7 +483,7 @@
 .formSplit {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 4rem;
+  gap: 2rem;
   align-items: stretch;
 }
 
@@ -481,31 +495,32 @@
 }
 
 .formInfo h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 3.5rem;
   margin-bottom: 1rem;
   font-weight: 500;
+  line-height: 1.2;
   word-break: break-word;
   overflow-wrap: break-word;
 }
 
 .formInfo p {
-  font-size: 14px;
+  font-size: 1rem;
   letter-spacing: 0em;
   line-height: 1.5;
   color: #000;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .handshakeImage {
   width: 100%;
   flex: 1;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 }
 
 .formCard {
-  background: #fff;
+  background: rgb(255, 255, 255);
   padding: 0 1.25rem;
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
@@ -528,7 +543,7 @@
 }
 
 .inputGroup label {
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: #000;
 }
@@ -571,9 +586,9 @@
   background: #000;
   color: #fff;
   border: none;
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   border-radius: 8px;
-  font-size: 1.1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s;
@@ -654,7 +669,7 @@
     padding-top: 2rem;
   }
 
-  .introInfo p {
+  .introInfo h4 {
     font-size: 1.1rem;
     line-height: 1.2;
   }
@@ -675,5 +690,39 @@
 
   .partnersGrid {
     gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1441px) {
+  .title {
+    font-size: 5rem;
+    line-height: 1.1em;
+  }
+
+  .introText {
+    font-size: 1.75rem;
+  }
+
+  .introInfo h4 {
+    font-size: 1.75rem;
+  }
+
+  .featureRow {
+    gap: 7rem;
+  }
+
+  .formSplit {
+    gap: 1.5rem;
+  }
+}
+
+.dealerPage :global(.jade-quotes-grid) {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.625rem;
+}
+
+@media (max-width: 767px) {
+  .dealerPage :global(.jade-quotes-grid) {
+    grid-template-columns: 1fr;
   }
 }

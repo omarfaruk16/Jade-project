@@ -15,7 +15,7 @@
 /* Hero Section */
 .heroSection {
   height: 90vh;
-  background: #f7f7f7;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,11 +68,13 @@
   font-weight: 500;
   line-height: 1.05em;
   letter-spacing: -0.07em;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
   font-family: var(--font-geist-sans), 'Geist', sans-serif;
   color: #ffffff;
   text-align: center;
 }
+
+
 
 
 .heroSubtitle {
@@ -91,7 +93,7 @@
 .gridRow {
   display: grid;
   grid-template-columns: 180px 3fr 2fr;
-  gap: 4rem;
+  gap: 7rem;
   align-items: flex-start;
   padding: 1rem 0;
 }
@@ -101,7 +103,7 @@
   align-items: center;
   gap: 12px;
   color: #000;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0em;
   align-self: flex-start;
@@ -125,7 +127,8 @@
 }
 
 .rightCol img {
-  max-height: 300px;
+  max-height: 350px;
+  border-radius: 8px;
 }
 
 /* Intro Section */
@@ -135,10 +138,10 @@
 
 .introText {
   font-size: clamp(1.3rem, 2vw, 1.75rem);
-  line-height: 1.2;
+  line-height: 1.18;
   color: #000000;
   font-weight: 400;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.046em;
   margin-bottom: 40px;
 }
 
@@ -175,14 +178,14 @@
 
 /* Office Design Section */
 .officeSection {
-  padding: 8rem 0;
+  padding: 5rem 0 4rem;
 }
 
 .officeHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
   gap: 4rem;
 }
 
@@ -249,12 +252,12 @@
 .conceptItem {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 0.625rem;
 }
 
 .conceptItem h4 {
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 1.5rem;
   margin: 0;
   color: #000;
@@ -268,6 +271,12 @@
   line-height: 1.5;
   margin: 0;
   max-width: 600px;
+}
+
+@media (min-width: 1080px) {
+  .conceptItem p {
+    max-width: none;
+  }
 }
 
 .officeImgSide {
@@ -401,7 +410,9 @@
 
 /* Full-width insights section — map spans full container */
 .fullInsightsSection {
-  padding: 6rem 0;
+  padding: 4rem 0;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 4rem;
 }
 
 .insightsHeader {
@@ -523,9 +534,9 @@
 }
 
 .statItem p {
-  font-size: 14px;
+  font-size: 1rem;
   letter-spacing: 0em;
-  color: #000;
+  color: #404040;
   line-height: 1.5;
   margin: 0;
 }
@@ -707,7 +718,7 @@
 .harmonyIntro {
   display: grid;
   grid-template-columns: 180px 1fr 1fr;
-  gap: 2rem 4rem;
+  gap: 2rem 8rem;
   align-items: start;
   margin-bottom: 5rem;
 }
@@ -722,7 +733,7 @@
   font-size: 1rem;
   letter-spacing: 0em;
   line-height: 1.6;
-  color: #000000;
+  color: #404040;
   margin: 0;
 }
 
@@ -749,7 +760,8 @@
   margin-right: 10px;
   background: white;
   border-radius: 10px;
-  padding: 2rem;
+  padding: 1rem;
+  gap: 6rem;
 }
 
 .processCardHeader {
@@ -767,10 +779,10 @@
 }
 
 .processText {
-  font-size: 1rem;
+  font-size: 1.25rem;
   letter-spacing: 0em;
   line-height: 1.55;
-  color: #000;
+  color: #404040;
   margin: 0;
   font-weight: 400;
 }
@@ -815,6 +827,14 @@
 }
 
 /* ── Responsive ── */
+.gridRow:has(.rightCol) {
+  gap: 4rem;
+}
+
+.gridRow:has(.rightCol) .leftCol {
+  margin-right: 3rem;
+}
+
 @media (max-width: 1200px) {
   .gridRow {
     grid-template-columns: 140px 1fr 1fr;
@@ -1307,5 +1327,20 @@
 
   .logoItem {
     height: 22px;
+  }
+}
+
+@media (min-width: 1441px) {
+  .heroTitle {
+    font-size: 5rem;
+    line-height: 1.1em;
+  }
+
+  .introText {
+    font-size: 1.75rem;
+  }
+
+  .fullInsightsSection {
+    margin-bottom: 8rem;
   }
 }

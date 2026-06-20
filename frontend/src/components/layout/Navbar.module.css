@@ -15,6 +15,7 @@
   opacity: 0;
 }
 .navbar {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,7 +24,8 @@
   width: 100%;
   padding: 12px 12px 12px 32px;
   border-radius: 20px;
-  box-sizing: border-box; /* Crucial so width: 100% doesn't overflow with padding */
+  box-sizing: border-box;
+  overflow: hidden;
 
   background: rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -79,7 +81,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 36px;
+  gap: 60px;
 }
 
 .dropdownContainer {
@@ -389,12 +391,21 @@
 
 .mobileMenuBtn {
   display: none;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
   background: transparent;
   border: none;
   cursor: pointer;
   z-index: 1001;
   color: #fff;
   pointer-events: auto;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
 }
 
 .mobileMenu {
@@ -579,7 +590,7 @@
   }
 
   .mobileMenuBtn {
-    display: block;
+    display: flex;
   }
 }
 
