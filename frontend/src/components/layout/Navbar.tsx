@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import API_BASE from '@/lib/api';
 import Link from 'next/link';
-import { ArrowUpRight, ChevronDown, Menu, X, ChevronRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { ArrowUpRight, ChevronDown, Menu, X, ChevronRight, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';
 
@@ -36,7 +37,9 @@ interface ProductCategory {
 }
 
 export default function Navbar({ visible = true }: { visible?: boolean }) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [hoveredBtn, setHoveredBtn] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -174,9 +177,19 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
               onMouseEnter={handleProductsEnter}
               onMouseLeave={handleProductsLeave}
             >
-              <Link href="/products" className={`${styles.navLink} ${styles.navLinkDimmed}`}>
+              <span
+                onClick={() => {
+                  if (productsData.length > 0) {
+                    router.push(`/products/${productsData[0].slug}`);
+                  } else {
+                    router.push('/products');
+                  }
+                }}
+                className={`${styles.navLink} ${styles.navLinkDimmed}`}
+                style={{ cursor: 'pointer' }}
+              >
                 Products <ChevronDown className={styles.icon} style={{ transform: showProducts ? 'rotate(180deg)' : 'none' }} />
-              </Link>
+              </span>
             </div>
 
             <Link href="/projects" className={styles.navLink} onMouseEnter={closeAllMenus}>Projects</Link>
@@ -184,7 +197,16 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
           </div>
           <div className={styles.navButtonGroup}>
             <Link href="/contact" className={styles.navLink} onMouseEnter={closeAllMenus}>Contact</Link>
-            <button className={styles.ctaButton} onMouseEnter={closeAllMenus}>Book a Call</button>
+            <button
+              className={styles.ctaButton}
+              onMouseEnter={() => { closeAllMenus(); setHoveredBtn(true); }}
+              onMouseLeave={() => setHoveredBtn(false)}
+            >
+              <span style={{ position: 'relative', display: 'block', overflow: 'hidden' }}>
+                <span style={{ display: 'block', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
+                <span style={{ display: 'block', position: 'absolute', top: '100%', left: 0, width: '100%', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
+              </span>
+            </button>
           </div>
         </div>
 
@@ -230,7 +252,8 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
                         onClick={() => setShowServices(false)}
                         onMouseEnter={handleServicesEnter}
                       >
-                        {child.name}
+                        <span>{child.name}</span>
+                        <ArrowRight size={24} className={styles.megaMenuChildArrow} />
                       </Link>
                     ))}
                   </div>
@@ -383,7 +406,17 @@ export default function Navbar({ visible = true }: { visible?: boolean }) {
               <Link href="/about" onClick={toggleMenu}>About us</Link>
 
               <Link href="/contact" onClick={toggleMenu}>Contact</Link>
-              <button className={styles.ctaButtonMobile} onClick={toggleMenu}>Book a Call</button>
+              <button
+              className={styles.ctaButtonMobile}
+              onClick={toggleMenu}
+              onMouseEnter={() => setHoveredBtn(true)}
+              onMouseLeave={() => setHoveredBtn(false)}
+            >
+              <span style={{ position: 'relative', display: 'block', overflow: 'hidden' }}>
+                <span style={{ display: 'block', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
+                <span style={{ display: 'block', position: 'absolute', top: '100%', left: 0, width: '100%', transition: 'transform 0.4s ease', transform: hoveredBtn ? 'translateY(-100%)' : 'translateY(0)' }}>Book a Call</span>
+              </span>
+            </button>
             </div>
           </motion.div>
         )}

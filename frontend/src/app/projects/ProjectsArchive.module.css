@@ -49,7 +49,7 @@
   padding: 0 4rem;
   margin-bottom: 3rem;
   display: flex;
-  max-width: 1600px;
+  max-width: var(--container-max, 1600px);
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
@@ -87,7 +87,7 @@
 .projectsGrid {
   padding: 0 1rem;
   display: grid;
-  max-width: 1600px;
+  max-width: var(--container-max, 1600px);
   margin: 0 auto;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;

@@ -127,13 +127,6 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className={styles.clientLogosSection}>
-                <h2 className={styles.clientLogosTitle}>Our Clients</h2>
-                <p className={styles.clientLogosSub}>We are proud of contributing to the success of world leading brand.</p>
-                <div className={styles.heroLogos}>
-                  <LogoMarquee />
-                </div>
-              </div>
             </section>
           </div>
         </SectionReveal>
@@ -246,6 +239,17 @@ export default function AboutPage() {
               <div className={styles.philColRight}>
                 <img src="https://images.unsplash.com/photo-1618221118493-9cfa1a1c00da?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vase and chair" className={styles.philImgTall} />
               </div>
+            </div>
+          </section>
+        </SectionReveal>
+
+        {/* Our Clients Section */}
+        <SectionReveal>
+          <section className={styles.clientLogosSection}>
+            <h2 className={styles.clientLogosTitle}>Our Clients</h2>
+            <p className={styles.clientLogosSub}>We are proud of contributing to the success of world leading brand.</p>
+            <div className={styles.heroLogos}>
+              <LogoMarquee />
             </div>
           </section>
         </SectionReveal>

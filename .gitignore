@@ -24,3 +24,6 @@ frontend/.opencode/
 # Temp files
 .tmp/
 frontend/.package-lock.json
+
+# Local dev Docker compose (separate from VPS deployment)
+docker-compose.data.yml

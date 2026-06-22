@@ -24,6 +24,21 @@
   gap: 8rem;
 }
 
+@media (min-width: 1081px) {
+  .container {
+    gap: 0;
+  }
+  .gridRow.top {
+    margin-bottom: 6.25rem;
+  }
+  .gridRow.bottom {
+    margin-top: 6.25rem;
+  }
+  .footer {
+    padding-top: 6.25rem;
+  }
+}
+
 /* GRID ROWS */
 .gridRow {
   display: grid;

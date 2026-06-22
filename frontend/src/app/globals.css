@@ -27,7 +27,7 @@
   --section-py: var(--space-xl);          /* 80px  — laptop+  */
 
   /* ── Container ── */
-  --container-max: 1600px;
+  --container-max: 1480px;
 }
 
 /* ── Global reset ── */

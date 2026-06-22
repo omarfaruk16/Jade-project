@@ -44,20 +44,21 @@
 }
 
 .heroTitle {
-  font-size: clamp(3rem, 6vw, 6rem);
+  font-size: 80px;
   font-weight: 500;
   color: #fff;
-  letter-spacing: -0.07em;
-  margin: 0 0 1rem 0;
-  line-height: 1.05;
+  letter-spacing: -3px;
+  margin: 0 0 2.5rem 0;
+  line-height: 70px;
   font-family: var(--font-geist-sans), 'Geist', sans-serif;
 }
 
 .heroSubtitle {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: 18px;
+  font-weight: 500;
   color: rgba(255, 255, 255, 0.88);
   max-width: 620px;
-  line-height: 1.6;
+  line-height: 30px;
   margin: 0;
 }
 
@@ -75,12 +76,12 @@
   color: #000;
   max-width: var(--container-max, 1600px);
   margin: 0 auto;
-  padding: 0 clamp(24px, 6vw, 48px);
+  padding: 50px clamp(24px, 6vw, 48px) 0;
 }
 
 /* ── Section ── */
 .section {
-  padding: 5rem 0;
+  padding: 4.0625rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
@@ -95,38 +96,45 @@
   font-size: 1rem;
   font-weight: 500;
   color: #000;
-  margin-bottom: 1rem;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 1081px) {
+  .sectionLabel {
+    line-height: 70px;
+  }
 }
 
 .sectionTitle {
-  font-size: clamp(2.2rem, 3.8vw, 3.8rem);
+  font-size: clamp(2.2rem, 3.8vw, 3.5rem);
   font-weight: 500;
   letter-spacing: -0.05em;
-  line-height: 1.1;
-  margin: 0 0 0.75rem;
+  line-height: 56px;
+  margin: 0 0 32px;
   color: #000;
 }
 
 .sectionSubtitle {
-  font-size: 1.2rem;
-  color: #000;
-  line-height: 1.6;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(34, 34, 34, 0.7);
+  line-height: 24px;
   max-width: 700px;
-  margin: 0 0 2rem;
+  margin: 0;
 }
 
 /* ── Descriptions 3-col ── */
 .descGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 3rem;
+  gap: 10px;
+  margin-top: 60px;
 }
 
 .descCard {
   background: #fff;
-  border-radius: 16px;
-  padding: 1.75rem;
+  border-radius: 8px;
+  padding: 20px 1.75rem;
   border: 1px solid rgba(0, 0, 0, 0.07);
   display: flex;
   flex-direction: column;
@@ -144,7 +152,7 @@
   width: 52px;
   height: 52px;
   background: #f2f2f0;
-  border-radius: 12px;
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,8 +160,15 @@
   flex-shrink: 0;
 }
 
+@media (min-width: 1081px) {
+  .descCardIcon {
+    width: 75px;
+    height: 75px;
+  }
+}
+
 .descCardTitle {
-  font-size: 1rem;
+  font-size: 20px;
   font-weight: 700;
   color: #111;
   margin: 0 0 0.6rem;
@@ -174,13 +189,13 @@
 .typesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 10px;
   margin-top: 3rem;
 }
 
 .typeCard {
   position: relative;
-  border-radius: 14px;
+  border-radius: 10px;
   overflow: hidden;
   aspect-ratio: 4/3;
   cursor: pointer;
@@ -208,8 +223,8 @@
 
 .typeName {
   color: #fff;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.25rem;
+  font-weight: 600;
   letter-spacing: -0.01em;
 }
 
@@ -217,7 +232,7 @@
 .materialLayout {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
-  gap: 5rem;
+  gap: 4.375rem;
   align-items: start;
   margin-top: 2rem;
 }
@@ -225,22 +240,22 @@
 .materialLeftTitle {
   font-size: clamp(2rem, 3.5vw, 3.5rem);
   font-weight: 500;
-  margin: 1rem 0 1rem;
+  margin: 0 0 32px;
   letter-spacing: -0.05em;
   line-height: 1.1;
   color: #000;
 }
 
 .materialLeftDesc {
-  font-size: 1rem;
-  color: #000;
-  line-height: 1.5;
+  font-size: 18px;
+  color: rgba(34, 34, 34, 0.7);
+  line-height: 24px;
 }
 
 .materialItemsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 3.75rem 1rem;
 }
 
 .materialItemImg {
@@ -248,20 +263,27 @@
   aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 10px;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.875rem;
+}
+
+@media (min-width: 1081px) {
+  .materialItemImg {
+    width: 494px;
+    height: 350px;
+  }
 }
 
 .materialItemTitle {
   font-size: 20px;
-  font-weight: 500;
-  color: #000;
-  margin: 0 0 0.25rem;
+  font-weight: 600;
+  color: rgba(34, 34, 34, 1);
+  margin: 0 0 1.25rem;
   letter-spacing: -0.02em;
 }
 
 .materialItemDesc {
-  font-size:  1rem;
-  color: #000;
+  font-size: 16px;
+  color: rgba(34, 34, 34, 0.7);
   line-height: 1.5;
   margin: 0;
 }
@@ -287,6 +309,12 @@
   justify-content: center;
   gap: 2.5rem;
   align-self: center;
+}
+
+@media (min-width: 1081px) {
+  .ctaInner {
+    gap: 4.375rem;
+  }
 }
 
 .ctaTagline {
@@ -336,14 +364,14 @@
 
 .ctaBadge {
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 2.9375rem;
   left: 0.75rem;
   width: 237px;
   background: rgba(13, 13, 13, 0.40);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 8px;
-  padding: 30px 46px 30px 30px;
+  padding: 30px 40px;
   display: flex;
   flex-direction: column;
   gap: 10px;

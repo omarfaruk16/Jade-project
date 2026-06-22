@@ -16,8 +16,8 @@ import ScaleBlur from '@/components/layout/ScaleBlur';
 import SmoothScroll from '@/components/layout/SmoothScroll';
 const QuoteIcon = () => (
   <svg viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg" width="14" height="12">
-    <path d="M4.5 0C2.01472 0 0 2.01472 0 4.5V11.5H5.5V6H2.5C2.5 4.89543 3.39543 4 4.5 4V0Z" fill="#fff" />
-    <path d="M13 0C10.5147 0 8.5 2.01472 8.5 4.5V11.5H14V6H11C11 4.89543 11.8954 4 13 4V0Z" fill="#fff" />
+    <path d="M4.5 0C2.01472 0 0 2.01472 0 4.5V11.5H5.5V6H2.5C2.5 4.89543 3.39543 4 4.5 4V0Z" fill="currentColor" />
+    <path d="M13 0C10.5147 0 8.5 2.01472 8.5 4.5V11.5H14V6H11C11 4.89543 11.8954 4 13 4V0Z" fill="currentColor" />
   </svg>
 );
 
@@ -194,7 +194,7 @@ export default function ServiceChildPage() {
               {/* Row 2: Overview */}
               {(item.overviewCategory || item.overviewBestFor || item.overviewStyleApproach) && (
                 <SectionReveal>
-                  <div className={styles.gridRow}>
+                  <div className={`${styles.gridRow} ${styles.overviewGridRow}`}>
                     <div className={styles.leftCol}>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="6" r="2.5" fill="#000" />

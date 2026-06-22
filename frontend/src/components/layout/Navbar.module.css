@@ -241,7 +241,9 @@
   font-size: 1.2rem;
   font-weight: 400;
   padding: 0.3rem 0 0.3rem 1rem;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   position: relative;
   transition:
     color 0.2s ease,
@@ -253,6 +255,17 @@
 .megaMenuChild:hover {
   color: #fff;
   border-left-color: #fff;
+}
+
+.megaMenuChildArrow {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.megaMenuChild:hover .megaMenuChildArrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .megaMenuRight {
