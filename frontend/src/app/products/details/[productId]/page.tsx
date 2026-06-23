@@ -249,7 +249,7 @@ export default function ProductDetailsPage() {
         <SectionReveal>
           <section className={styles.ctaSection}>
             <div className={styles.ctaInner}>
-              <p className={styles.ctaTagline}>Hope you got a good idea about our products. To learn more or choose one, talk to our sales expert.</p>
+              <p className={styles.ctaTagline}>Hope you got a good idea about our products. To learn more or choose one, talk to our Sales Expert.</p>
               <button className={styles.ctaBtn} onClick={() => window.location.href = '/contact'}>Talk to Expert</button>
             </div>
             <div className={styles.ctaImageWrap}>

@@ -220,6 +220,7 @@
 @media (max-width: 809px) {
   .heroContainer {
     padding-top: 72px;
+    justify-content: center;
   }
 
   .heroWrapper {
@@ -264,5 +265,12 @@
   .awardIcon {
     height: 32px;
     max-width: 55px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    align-items: center;
+    text-align: center;
   }
 }
