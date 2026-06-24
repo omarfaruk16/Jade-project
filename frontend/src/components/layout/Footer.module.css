@@ -259,6 +259,14 @@
   height: auto;
 }
 
+.copyright {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  margin-top: 1rem;
+  letter-spacing: 0.02em;
+}
+
 .grafinutLogoBox {
   width: 48px;
   height: 48px;

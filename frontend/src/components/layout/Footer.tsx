@@ -32,10 +32,10 @@ export default function Footer() {
         <div className={styles.topRow}>
           <div className={styles.leftCol}>
             <div className={styles.logoBox}>
-              <img src="/images/jadelogo.png" alt="Jade" className={styles.logoImg} />
+              <img src="/images/jadelogo.png" alt="SpazioPerfetto" className={styles.logoImg} />
             </div>
             <p className={styles.tagline}>
-              Jade blends calm and character<br />creating beautifully crafted interiors
+              Redefining spaces with a perfect blend of<br />serenity and sophistication.
             </p>
             <div className={styles.socialRow}>
               <a href="#" className={styles.socialLink}>
@@ -137,9 +137,12 @@ export default function Footer() {
               textLength="1460"
               lengthAdjust="spacing"
             >
-              JADE Sdn Bhd
+              SpazioPerfetto
             </text>
           </svg>
+          <p className={styles.copyright}>
+            Jade Kitchen Design Sdn Bhd (1050254-U) &copy;2026 . All Rights Reserved.
+          </p>
         </div>
       </div>
     </footer>

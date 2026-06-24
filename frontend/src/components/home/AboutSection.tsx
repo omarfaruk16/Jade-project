@@ -22,8 +22,8 @@ export default function AboutSection() {
         <div className={styles.header}>
           <TitleReveal>
             <h2 className={styles.title}>
-              Jade blends calm and character <span className={styles.titleDash}></span>{' '}
-              creating beautifully crafted interiors.
+              Jade blends calm and character
+              creating beautifully crafted spaces.
             </h2>
           </TitleReveal>
           <motion.div

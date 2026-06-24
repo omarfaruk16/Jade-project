@@ -9,7 +9,7 @@ export default function HeroSection() {
     <section className={styles.heroWrapper}>
       <div className={styles.heroContainer}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/home-hero.webp" alt="Luxurious modern house exterior" className={styles.bgImage} />
+        <img src="/images/New%20folder/Jade-hero.jpg.jpeg" alt="Luxurious modern house exterior" className={styles.bgImage} />
         <div className={styles.overlay}></div>
 
         <div className={styles.content}>
@@ -25,11 +25,9 @@ export default function HeroSection() {
 
             <div style={{ overflow: 'hidden' }}>
               <h1 className={styles.title}>
-                <ScaleBlur text="The Best Interior" stagger={0.03} delay={0} />
+                <ScaleBlur text="Luxury in Every" stagger={0.03} delay={0} />
                 <br />
-                <ScaleBlur text="Company in" stagger={0.03} delay={0.5} />
-                <br />
-                <ScaleBlur text="Malaysia" stagger={0.03} delay={0.8} />
+                <ScaleBlur text="Detail of Space." stagger={0.03} delay={0.5} />
               </h1>
             </div>
           </div>
