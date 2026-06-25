@@ -19,15 +19,15 @@ const FourDots = () => (
 
 const features = [
   {
-    img: '/images/f1.png',
+    img: '/images/f1.jpg',
     label: 'The Art of Understanding brings clarity in every detail.',
   },
   {
-    img: '/images/f2.png',
+    img: '/images/f2.jpg',
     label: 'The Craft of Perfection delivers flawless lasting results.',
   },
   {
-    img: '/images/f3.png',
+    img: '/images/f3.jpg',
     label: 'The Promise of Forever ensures trust that never fades.',
   },
 ];
@@ -48,7 +48,7 @@ export default function HarmonySection() {
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              <img src="/images/bg-2.avif" alt="Jade interior showcase" className={styles.mediaImg} />
+              <img src="/images/bg-2.jpg" alt="Jade interior showcase" className={styles.mediaImg} />
               <div className={styles.mediaOverlay}>
                 <button className={styles.videoBtn} onClick={() => setIsVideoOpen(true)}>
                   <span className={styles.playIcon}>▶</span>
@@ -78,14 +78,16 @@ export default function HarmonySection() {
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
-                <span className={styles.metaLabel}>(Resonate)</span>
-                <p className={styles.metaText}>
-                  Every dream home begins with questions: Will this design fit my life?
-                  Will it be installed flawlessly? Will it last? At Jade, we remove doubt
-                  with clarity, precision, and lasting support — a journey from vision to
-                  peace of mind.
-                </p>
-                <Link href="/contact" className={styles.ctaBtn}>Get a Quote</Link>
+                <span className={styles.metaLabel}>(Essence)</span>
+                <div className={styles.metaTextCtaWrap}>
+                  <p className={styles.metaText}>
+                    Every dream home begins with questions: Will this design fit my life?
+                    Will it be installed flawlessly? Will it last? At Jade, we remove doubt
+                    with clarity, precision, and lasting support — a journey from vision to
+                    peace of mind.
+                  </p>
+                  <Link href="/contact" className={styles.ctaBtn}>Get a Quote</Link>
+                </div>
               </motion.div>
 
               {/* Feature cards */}
