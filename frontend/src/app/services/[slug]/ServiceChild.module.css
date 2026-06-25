@@ -686,6 +686,14 @@
 }
 
 @media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.25rem;
+  }
+
+  .itemTitle {
+    font-size: 2.25rem;
+  }
+
   .subNavWrapper {
     padding: 16px;
   }

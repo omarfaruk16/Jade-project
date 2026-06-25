@@ -186,6 +186,7 @@
 
   .container {
     padding-block: calc(var(--space-lg, 48px) * 0.75);
+    padding-inline: 24px;
   }
 
   .teamGrid {

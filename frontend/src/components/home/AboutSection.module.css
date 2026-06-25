@@ -287,6 +287,10 @@
     padding-block: var(--space-lg, 48px);
   }
 
+  .title {
+    font-size: 2.25rem;
+  }
+
   .imageCard img {
     max-height: 250px;
   }
