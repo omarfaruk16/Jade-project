@@ -1,0 +1,87 @@
+.indexPage {
+  min-height: 100vh;
+  font-family: var(--font-geist-sans), 'Geist', sans-serif;
+  background: #fff;
+  padding: 6rem 4rem;
+}
+
+.loadingText {
+  color: #000;
+  font-size: 1rem;
+}
+
+.indexHero {
+  margin-bottom: 3rem;
+}
+
+.indexHero h1,
+.pageTitle {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 500;
+  color: #000;
+  letter-spacing: -0.05em;
+  line-height: 1.1em;
+  margin-bottom: 0.75rem;
+}
+
+.indexHero p {
+  color: #000;
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.5;
+}
+
+.indexGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.indexGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.indexGroupLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #000;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 0.25rem;
+}
+
+.indexCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.2rem;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.indexCard:hover {
+  background: #fef6f4;
+  border-color: #F05C46;
+  transform: translateX(4px);
+}
+
+.arrow {
+  color: #F05C46;
+  font-size: 1rem;
+  transition: transform 0.2s;
+}
+
+.indexCard:hover .arrow {
+  transform: translateX(4px);
+}

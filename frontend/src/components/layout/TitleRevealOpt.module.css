@@ -1,0 +1,19 @@
+.titleReveal {
+  will-change: opacity, transform;
+  -webkit-font-smoothing: antialiased;
+}
+
+.titleReveal > * {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: block;
+}
+
+.titleReveal.animated > * {
+  opacity: 1;
+  transform: translateY(0);
+}

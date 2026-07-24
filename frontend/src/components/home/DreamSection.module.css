@@ -1,0 +1,165 @@
+/* ── Dream Section ─────────────────────────────── */
+.section {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  color: #fff;
+  overflow: hidden;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+}
+
+.backgroundWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.contentContainer {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.topArea {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 1200px;
+}
+
+.title {
+  flex: 1.2;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  margin: 0;
+  max-width: 800px;
+}
+
+.description {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  letter-spacing: -0.04em;
+  max-width: 450px;
+  margin: 0;
+  align-self: flex-start;
+}
+
+@media (min-width: 768px) {
+  .description {
+    align-self: center;
+    margin-left: 10%;
+  }
+}
+
+/* ── Floating Card ── */
+.floatingCard {
+  background: #fdfdfd;
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: #000;
+  align-self: flex-end;
+  margin-top: 6rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4rem;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profileText {
+  display: flex;
+  flex-direction: column;
+}
+
+.profileName {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 0 0.1rem;
+  letter-spacing: -0.05em;
+  color: #000000;
+}
+
+.profileRole {
+  font-size: 1rem;
+  letter-spacing: 0em;
+  line-height: 1.5;
+  color: #000000;
+  margin: 0;
+}
+
+.cardIcon {
+  color: #000;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.cardDesc {
+  font-size: 1rem;
+  color: #000000;
+  line-height: 1.5;
+  letter-spacing: 0em;
+  margin: 0;
+  flex: 1;
+}
+
+.quoteBtn {
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.quoteBtn:hover {
+  opacity: 0.8;
+}
