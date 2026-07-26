@@ -178,11 +178,18 @@ export default function ProjectsAdmin() {
   const handleDelete = async (id: string) => {
     if (!confirm('Delete this project?')) return;
     const token = localStorage.getItem('adminToken');
-    await fetch(`${API_BASE}/projects/${id}`, {
-      method: 'DELETE',
-      headers: { 'Authorization': `Bearer ${token}` },
-    });
-    fetchProjects();
+    try {
+      const res = await fetch(`${API_BASE}/projects/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(`Delete failed (${res.status}): ${data.error || res.statusText}`);
+        return;
+      }
+      fetchProjects();
+    } catch (e: any) { alert(`Delete failed: ${e.message}`); }
   };
 
   if (loading) return <div style={{ padding: '2rem', color: 'rgba(255,255,255,0.5)' }}>Loading projects...</div>;

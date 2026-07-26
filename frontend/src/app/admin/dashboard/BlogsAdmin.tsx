@@ -82,9 +82,14 @@ export default function BlogsAdmin() {
     if (!confirm('Delete this blog post?')) return;
     const token = localStorage.getItem('adminToken');
     try {
-      await fetch(`${API_BASE}/blogs/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+      const res = await fetch(`${API_BASE}/blogs/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(`Delete failed (${res.status}): ${data.error || res.statusText}`);
+        return;
+      }
       fetchBlogs();
-    } catch (e) { console.error(e); }
+    } catch (e: any) { alert(`Delete failed: ${e.message}`); }
   };
 
   return (

@@ -7,6 +7,11 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
+if (!process.env.JWT_SECRET) {
+  console.error('FATAL: JWT_SECRET is not set in environment. All admin operations will fail. Set it in .env and restart.');
+  process.exit(1);
+}
+
 const app = express();
 app.set('trust proxy', 1); // Trust proxy headers from Nginx
 const PORT = process.env.PORT || 5001;

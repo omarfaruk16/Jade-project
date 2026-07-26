@@ -158,12 +158,17 @@ export default function AdminDashboard() {
       if (tab === 'dealerRequests') endpointPath = 'dealer/requests';
       if (tab === 'contactMessages') endpointPath = 'contact/messages';
 
-      await fetch(`${API_BASE}/${endpointPath}/${id}`, {
+      const res = await fetch(`${API_BASE}/${endpointPath}/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(`Delete failed (${res.status}): ${data.error || res.statusText}`);
+        return;
+      }
       fetchData();
-    } catch (e) { console.error(e); }
+    } catch (e: any) { alert(`Delete failed: ${e.message}`); }
   };
 
   const getActiveArray = () => {
