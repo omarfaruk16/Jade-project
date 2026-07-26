@@ -12,6 +12,7 @@ export default function ContactPageClient() {
   const [contact, setContact] = useState<any>(null);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [formError, setFormError] = useState('');
   const [formData, setFormData] = useState({ fullName: '', email: '', message: '' });
 
   // Fetch fresh contact data on every mount — always up-to-date with admin changes
@@ -33,11 +34,14 @@ export default function ContactPageClient() {
       });
       if (res.ok) {
         setSubmitted(true);
+        setFormError('');
         setFormData({ fullName: '', email: '', message: '' });
         setTimeout(() => setSubmitted(false), 4000);
+      } else {
+        setFormError('Failed to send message. Please try again.');
       }
     } catch (err) {
-      console.error(err);
+      setFormError('Connection error. Please check your network and try again.');
     } finally {
       setLoading(false);
     }
@@ -75,9 +79,18 @@ export default function ContactPageClient() {
               <div className={styles.infoItem}>
                 <h4>Locations</h4>
                 <div className={styles.addressList}>
-                  <p className={styles.addressText}>No.17 Jalan USJ 1/33 Taman<br />Perindustrian Subang Permai, 47500<br />Subang Jaya Selangor. Malaysia</p>
-                  <p className={styles.addressText}>263B Spencer Road,<br />Thornlie 6108 WA, Australia</p>
-                  <p className={styles.addressText}>139 Lord Roberts DR,<br />Scarborough On, M1K 3W5, Canada</p>
+                  {contact?.addresses?.length > 0
+                    ? [...contact.addresses]
+                        .sort((a: any, b: any) => a.order - b.order)
+                        .map((addr: any) => (
+                          <p key={addr.id} className={styles.addressText}>{addr.address}</p>
+                        ))
+                    : <>
+                        <p className={styles.addressText}>No.17 Jalan USJ 1/33 Taman<br />Perindustrian Subang Permai, 47500<br />Subang Jaya Selangor. Malaysia</p>
+                        <p className={styles.addressText}>263B Spencer Road,<br />Thornlie 6108 WA, Australia</p>
+                        <p className={styles.addressText}>139 Lord Roberts DR,<br />Scarborough On, M1K 3W5, Canada</p>
+                      </>
+                  }
                 </div>
               </div>
               <div className={styles.infoItem}>
@@ -101,6 +114,7 @@ export default function ContactPageClient() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
+                  {formError && <p style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '0.875rem' }}>{formError}</p>}
                   <div className={styles.formGroup}>
                     <label>Full Name</label>
                     <input type="text" placeholder="Jane Smith" required value={formData.fullName} onChange={e => setFormData({ ...formData, fullName: e.target.value })} />

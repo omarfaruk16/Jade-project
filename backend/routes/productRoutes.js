@@ -56,7 +56,10 @@ router.get('/categories/:slug', async (req, res) => {
 router.post('/categories', auth, async (req, res) => {
   try {
     const { name, image, subtitle, order } = req.body;
-    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (!name || typeof name !== 'string' || !name.trim()) {
+      return res.status(400).json({ error: 'Category name is required' });
+    }
+    const slug = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     const category = await prisma.productCategory.create({
       data: { name, slug, image, subtitle: subtitle || null, order: Number(order) || 0 }
     });
@@ -67,7 +70,10 @@ router.post('/categories', auth, async (req, res) => {
 router.put('/categories/:id', auth, async (req, res) => {
   try {
     const { name, image, subtitle, order } = req.body;
-    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (!name || typeof name !== 'string' || !name.trim()) {
+      return res.status(400).json({ error: 'Category name is required' });
+    }
+    const slug = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     const category = await prisma.productCategory.update({
       where: { id: req.params.id },
       data: { name, slug, image, subtitle: subtitle || null, order: Number(order) || 0 }
@@ -125,6 +131,9 @@ router.post('/', auth, async (req, res) => {
       descriptions, types, materials, accessories, appliances
     } = req.body;
 
+    if (!title || !subtitle || !coverImage || !categoryId) {
+      return res.status(400).json({ error: 'title, subtitle, coverImage, and categoryId are required' });
+    }
     const product = await prisma.product.create({
       data: {
         title, subtitle, coverImage,
@@ -175,69 +184,54 @@ router.put('/:id', auth, async (req, res) => {
       descriptions, types, materials, accessories, appliances
     } = req.body;
 
-    // Delete all existing sub-records
-    await prisma.productWhatsIncluded.deleteMany({ where: { productId: req.params.id } });
-    await prisma.productGalleryImage.deleteMany({ where: { productId: req.params.id } });
-    await prisma.productDescription.deleteMany({ where: { productId: req.params.id } });
-    await prisma.productType.deleteMany({ where: { productId: req.params.id } });
-
-    // For materials, accessories, and appliances, delete items first then parent
-    const existingMaterials = await prisma.productMaterial.findMany({ where: { productId: req.params.id } });
-    for (const m of existingMaterials) {
-      await prisma.productMaterialItem.deleteMany({ where: { materialId: m.id } });
-    }
-    await prisma.productMaterial.deleteMany({ where: { productId: req.params.id } });
-
-    const existingAccessories = await prisma.productAccessory.findMany({ where: { productId: req.params.id } });
-    for (const a of existingAccessories) {
-      await prisma.productAccessoryItem.deleteMany({ where: { accessoryId: a.id } });
-    }
-    await prisma.productAccessory.deleteMany({ where: { productId: req.params.id } });
-
-    const existingAppliances = await prisma.productAppliance.findMany({ where: { productId: req.params.id } });
-    for (const a of existingAppliances) {
-      await prisma.productApplianceItem.deleteMany({ where: { applianceId: a.id } });
-    }
-    await prisma.productAppliance.deleteMany({ where: { productId: req.params.id } });
-
-    const product = await prisma.product.update({
-      where: { id: req.params.id },
-      data: {
-        title, subtitle, coverImage,
-        overviewCategory, overviewBestFor, overviewStyleApproach,
-        about, keyLine, imageUrl,
-        featureQuotesJson: featureQuotesJson || '[]',
-        categoryId, order: Number(order) || 0,
-        whatsIncluded: { create: (whatsIncluded || []).map((w, i) => ({ title: w.title, description: w.description, order: i })) },
-        gallery: { create: (gallery || []).map((g, i) => ({ url: g.url, order: i })) },
-        descriptions: { create: (descriptions || []).map((d, i) => ({ title: d.title, description: d.description, order: i })) },
-        types: { create: (types || []).map((t, i) => ({ name: t.name, image: t.image, order: i })) },
-        materials: {
-          create: (materials || []).map((m, i) => ({
-            sectionTitle: m.sectionTitle,
-            sectionDesc: m.sectionDesc,
-            order: i,
-            items: { create: (m.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
-          }))
+    const product = await prisma.$transaction(async (tx) => {
+      await tx.productWhatsIncluded.deleteMany({ where: { productId: req.params.id } });
+      await tx.productGalleryImage.deleteMany({ where: { productId: req.params.id } });
+      await tx.productDescription.deleteMany({ where: { productId: req.params.id } });
+      await tx.productType.deleteMany({ where: { productId: req.params.id } });
+      // onDelete:Cascade handles child items for these three
+      await tx.productMaterial.deleteMany({ where: { productId: req.params.id } });
+      await tx.productAccessory.deleteMany({ where: { productId: req.params.id } });
+      await tx.productAppliance.deleteMany({ where: { productId: req.params.id } });
+      return tx.product.update({
+        where: { id: req.params.id },
+        data: {
+          title, subtitle, coverImage,
+          overviewCategory, overviewBestFor, overviewStyleApproach,
+          about, keyLine, imageUrl,
+          featureQuotesJson: featureQuotesJson || '[]',
+          categoryId, order: Number(order) || 0,
+          whatsIncluded: { create: (whatsIncluded || []).map((w, i) => ({ title: w.title, description: w.description, order: i })) },
+          gallery: { create: (gallery || []).map((g, i) => ({ url: g.url, order: i })) },
+          descriptions: { create: (descriptions || []).map((d, i) => ({ title: d.title, description: d.description, order: i })) },
+          types: { create: (types || []).map((t, i) => ({ name: t.name, image: t.image, order: i })) },
+          materials: {
+            create: (materials || []).map((m, i) => ({
+              sectionTitle: m.sectionTitle,
+              sectionDesc: m.sectionDesc,
+              order: i,
+              items: { create: (m.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
+            }))
+          },
+          accessories: {
+            create: (accessories || []).map((a, i) => ({
+              sectionTitle: a.sectionTitle,
+              sectionDesc: a.sectionDesc,
+              order: i,
+              items: { create: (a.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
+            }))
+          },
+          appliances: {
+            create: (appliances || []).map((a, i) => ({
+              sectionTitle: a.sectionTitle,
+              sectionDesc: a.sectionDesc,
+              order: i,
+              items: { create: (a.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
+            }))
+          },
         },
-        accessories: {
-          create: (accessories || []).map((a, i) => ({
-            sectionTitle: a.sectionTitle,
-            sectionDesc: a.sectionDesc,
-            order: i,
-            items: { create: (a.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
-          }))
-        },
-        appliances: {
-          create: (appliances || []).map((a, i) => ({
-            sectionTitle: a.sectionTitle,
-            sectionDesc: a.sectionDesc,
-            order: i,
-            items: { create: (a.items || []).map((item, j) => ({ title: item.title, description: item.description, image: item.image, order: j })) }
-          }))
-        },
-      },
-      include: fullProductInclude
+        include: fullProductInclude
+      });
     });
     res.json(product);
   } catch (e) { res.status(400).json({ error: e.message }); }

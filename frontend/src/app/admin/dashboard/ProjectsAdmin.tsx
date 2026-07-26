@@ -46,7 +46,7 @@ export default function ProjectsAdmin() {
   const [uploading, setUploading] = useState<string | null>(null); // tracks which field is uploading
 
   const fetchProjects = useCallback(async () => {
-    const res = await fetch(`${API_BASE}/projects`);
+    const res = await fetch(`${API_BASE}/projects`, { cache: 'no-store' });
     setProjects(await res.json());
     setLoading(false);
   }, []);
@@ -188,7 +188,7 @@ export default function ProjectsAdmin() {
         alert(`Delete failed (${res.status}): ${data.error || res.statusText}`);
         return;
       }
-      fetchProjects();
+      setProjects(prev => prev.filter(p => p.id !== id));
     } catch (e: any) { alert(`Delete failed: ${e.message}`); }
   };
 

@@ -61,7 +61,10 @@ router.get('/parents', async (req, res) => {
 router.post('/parents', auth, async (req, res) => {
   try {
     const { name, order } = req.body;
-    const item = await prisma.serviceParentCategory.create({ data: { name, order: Number(order) || 0 } });
+    if (!name || typeof name !== 'string' || !name.trim()) {
+      return res.status(400).json({ error: 'Name is required' });
+    }
+    const item = await prisma.serviceParentCategory.create({ data: { name: name.trim(), order: Number(order) || 0 } });
     res.json(item);
   } catch (e) { res.status(400).json({ error: e.message }); }
 });
@@ -69,7 +72,10 @@ router.post('/parents', auth, async (req, res) => {
 router.put('/parents/:id', auth, async (req, res) => {
   try {
     const { name, order } = req.body;
-    const item = await prisma.serviceParentCategory.update({ where: { id: req.params.id }, data: { name, order: Number(order) || 0 } });
+    if (!name || typeof name !== 'string' || !name.trim()) {
+      return res.status(400).json({ error: 'Name is required' });
+    }
+    const item = await prisma.serviceParentCategory.update({ where: { id: req.params.id }, data: { name: name.trim(), order: Number(order) || 0 } });
     res.json(item);
   } catch (e) { res.status(400).json({ error: e.message }); }
 });
@@ -98,9 +104,14 @@ router.get('/children', async (req, res) => {
 router.post('/children', auth, async (req, res) => {
   try {
     const { name, parentId, description, coverImage, subtitle, statsNumber, statsText, order } = req.body;
-    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (!name || typeof name !== 'string' || !name.trim()) {
+      return res.status(400).json({ error: 'Name is required' });
+    }
+    let slug = slugify(name);
+    const slugExists = await prisma.serviceChildCategory.findUnique({ where: { slug } });
+    if (slugExists) slug = `${slug}-${Date.now()}`;
     const item = await prisma.serviceChildCategory.create({
-      data: { name, slug, parentId, description, coverImage, subtitle, statsNumber, statsText, order: Number(order) || 0 }
+      data: { name: name.trim(), slug, parentId, description, coverImage, subtitle, statsNumber, statsText, order: Number(order) || 0 }
     });
     res.json(item);
   } catch (e) { res.status(400).json({ error: e.message }); }
@@ -126,10 +137,15 @@ router.put('/children/reorder', auth, async (req, res) => {
 router.put('/children/:id', auth, async (req, res) => {
   try {
     const { name, parentId, description, coverImage, subtitle, statsNumber, statsText, order } = req.body;
-    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (!name || typeof name !== 'string' || !name.trim()) {
+      return res.status(400).json({ error: 'Name is required' });
+    }
+    let slug = slugify(name);
+    const slugConflict = await prisma.serviceChildCategory.findFirst({ where: { slug, NOT: { id: req.params.id } } });
+    if (slugConflict) slug = `${slug}-${Date.now()}`;
     const item = await prisma.serviceChildCategory.update({
       where: { id: req.params.id },
-      data: { name, slug, parentId, description, coverImage, subtitle, statsNumber, statsText, order: Number(order) || 0 }
+      data: { name: name.trim(), slug, parentId, description, coverImage, subtitle, statsNumber, statsText, order: Number(order) || 0 }
     });
     res.json(item);
   } catch (e) { res.status(400).json({ error: e.message }); }
@@ -199,23 +215,24 @@ router.post('/items', auth, async (req, res) => {
 router.put('/items/:id', auth, async (req, res) => {
   try {
     const { title, about, keyLine, imageUrl, childCategoryId, order, whatsIncluded, gallery, overviewCategory, overviewBestFor, overviewStyleApproach, featureQuotesJson } = req.body;
-    // Delete children then recreate (simplest pattern for SQLite)
-    await prisma.whatsIncludedItem.deleteMany({ where: { serviceItemId: req.params.id } });
-    await prisma.serviceGalleryImage.deleteMany({ where: { serviceItemId: req.params.id } });
-    const item = await prisma.serviceItem.update({
-      where: { id: req.params.id },
-      data: {
-        title, about, keyLine, imageUrl, childCategoryId, order: Number(order) || 0,
-        overviewCategory, overviewBestFor, overviewStyleApproach,
-        featureQuotesJson: featureQuotesJson || "[]",
-        whatsIncluded: {
-          create: (whatsIncluded || []).map((w, i) => ({ title: w.title, description: w.description, order: i }))
+    const item = await prisma.$transaction(async (tx) => {
+      await tx.whatsIncludedItem.deleteMany({ where: { serviceItemId: req.params.id } });
+      await tx.serviceGalleryImage.deleteMany({ where: { serviceItemId: req.params.id } });
+      return tx.serviceItem.update({
+        where: { id: req.params.id },
+        data: {
+          title, about, keyLine, imageUrl, childCategoryId, order: Number(order) || 0,
+          overviewCategory, overviewBestFor, overviewStyleApproach,
+          featureQuotesJson: featureQuotesJson || "[]",
+          whatsIncluded: {
+            create: (whatsIncluded || []).map((w, i) => ({ title: w.title, description: w.description, order: i }))
+          },
+          gallery: {
+            create: (gallery || []).map((g, i) => ({ url: g.url, order: i }))
+          }
         },
-        gallery: {
-          create: (gallery || []).map((g, i) => ({ url: g.url, order: i }))
-        }
-      },
-      include: { whatsIncluded: true, gallery: true }
+        include: { whatsIncluded: true, gallery: true }
+      });
     });
     res.json(item);
   } catch (e) { res.status(400).json({ error: e.message }); }

@@ -109,7 +109,7 @@ model SocialLink {
   id                String          @id @default(uuid())
   name              String
   url               String
-  contactSettings   ContactSettings @relation(fields: [contactSettingsId], references: [id])
+  contactSettings   ContactSettings @relation(fields: [contactSettingsId], references: [id], onDelete: Cascade)
   contactSettingsId String
 }
 

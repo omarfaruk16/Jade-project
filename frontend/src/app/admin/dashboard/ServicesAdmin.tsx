@@ -85,10 +85,11 @@ export default function ServicesAdmin() {
   });
 
   const fetchAll = async () => {
+    const nc = { cache: 'no-store' as const };
     const [pRes, cRes, iRes] = await Promise.all([
-      fetch(`${API}/parents`),
-      fetch(`${API}/children`),
-      fetch(`${API}/items`)
+      fetch(`${API}/parents`, nc),
+      fetch(`${API}/children`, nc),
+      fetch(`${API}/items`, nc)
     ]);
     setParents(await pRes.json());
     setChildren(await cRes.json());
@@ -134,7 +135,12 @@ export default function ServicesAdmin() {
     try {
       const res = await fetch(`${API}/parents/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
       if (!res.ok) throw new Error(await res.text());
-      fetchAll();
+      setParents(prev => prev.filter(p => p.id !== id));
+      setChildren(prev => prev.filter(c => c.parentId !== id));
+      setItems(prev => prev.filter(i => {
+        const child = children.find(c => c.id === i.childCategoryId);
+        return !child || child.parentId !== id;
+      }));
     } catch (e: any) { alert('Error deleting parent: ' + e.message); }
   };
 
@@ -166,7 +172,8 @@ export default function ServicesAdmin() {
     try {
       const res = await fetch(`${API}/children/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
       if (!res.ok) throw new Error(await res.text());
-      fetchAll();
+      setChildren(prev => prev.filter(c => c.id !== id));
+      setItems(prev => prev.filter(i => i.childCategoryId !== id));
     } catch (e: any) { alert('Error deleting child: ' + e.message); }
   };
 
@@ -215,7 +222,7 @@ export default function ServicesAdmin() {
     try {
       const res = await fetch(`${API}/items/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
       if (!res.ok) throw new Error(await res.text());
-      fetchAll();
+      setItems(prev => prev.filter(i => i.id !== id));
     } catch (e: any) { alert('Error deleting item: ' + e.message); }
   };
 

@@ -3,7 +3,7 @@ import { GeistSans } from 'geist/font/sans';
 import "./globals.css";
 import "./jade-shared.css";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api';
+const API_BASE = process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api';
 
 const FALLBACK_TITLE = "Jade Kitchen Design | Interior Products Manufacturer Malaysia";
 const FALLBACK_DESC  = "Leading Malaysian manufacturer of custom kitchen cabinets, wardrobes, bespoke furniture, interior fit-out products, and worldwide export & import services.";
@@ -85,10 +85,6 @@ export async function generateMetadata(): Promise<Metadata> {
       languages: {
         "en-MY": "https://www.jadekitchen.com.my",
       },
-    },
-    verification: {
-      google: "your-google-site-verification-code",
-      yandex: "your-yandex-verification-code",
     },
   };
 }

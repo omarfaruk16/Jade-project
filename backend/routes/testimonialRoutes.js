@@ -23,13 +23,17 @@ router.post('/', auth, async (req, res) => {
     if (!name || !review) {
       return res.status(400).json({ error: 'Name and Review are required' });
     }
+    const parsedRating = rating !== undefined ? parseInt(rating, 10) : undefined;
+    if (parsedRating !== undefined && (isNaN(parsedRating) || parsedRating < 1 || parsedRating > 5)) {
+      return res.status(400).json({ error: 'Rating must be an integer between 1 and 5' });
+    }
     const testimonial = await prisma.testimonial.create({
       data: {
         name,
         role,
         review,
         avatar,
-        rating: rating !== undefined ? parseInt(rating, 10) : undefined
+        rating: parsedRating
       }
     });
     res.json(testimonial);
@@ -47,7 +51,13 @@ router.put('/:id', auth, async (req, res) => {
     if (role !== undefined) data.role = role;
     if (review !== undefined) data.review = review;
     if (avatar !== undefined) data.avatar = avatar;
-    if (rating !== undefined) data.rating = parseInt(rating, 10);
+    if (rating !== undefined) {
+      const r = parseInt(rating, 10);
+      if (isNaN(r) || r < 1 || r > 5) {
+        return res.status(400).json({ error: 'Rating must be an integer between 1 and 5' });
+      }
+      data.rating = r;
+    }
 
     const testimonial = await prisma.testimonial.update({
       where: { id: req.params.id },

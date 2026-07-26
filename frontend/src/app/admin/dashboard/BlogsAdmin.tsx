@@ -27,7 +27,7 @@ export default function BlogsAdmin() {
 
   const fetchBlogs = useCallback(async () => {
     try {
-      const res = await fetch(`${API_BASE}/blogs`);
+      const res = await fetch(`${API_BASE}/blogs`, { cache: 'no-store' });
       setBlogs(await res.json());
     } catch (e) { console.error(e); }
   }, []);
@@ -67,8 +67,9 @@ export default function BlogsAdmin() {
         body: JSON.stringify(form)
       });
       if (res.ok) {
+        const saved = await res.json();
         setModal(false);
-        fetchBlogs();
+        setBlogs(prev => editing ? prev.map(b => b.id === saved.id ? saved : b) : [saved, ...prev]);
       } else {
         const data = await res.json().catch(() => ({}));
         alert(`Save failed: ${data.error || res.statusText}`);
@@ -88,7 +89,7 @@ export default function BlogsAdmin() {
         alert(`Delete failed (${res.status}): ${data.error || res.statusText}`);
         return;
       }
-      fetchBlogs();
+      setBlogs(prev => prev.filter(b => b.id !== id));
     } catch (e: any) { alert(`Delete failed: ${e.message}`); }
   };
 

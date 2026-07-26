@@ -39,15 +39,16 @@ export default function AdminDashboard() {
   const fetchData = useCallback(async () => {
     try {
       const token = localStorage.getItem('adminToken');
+      const nc = { cache: 'no-store' as const };
       const [promRes, testRes, teamRes, faqRes, contactRes, partRes, dealRes, msgRes] = await Promise.all([
-        fetch(`${API_BASE}/promotions`),
-        fetch(`${API_BASE}/testimonials`),
-        fetch(`${API_BASE}/team`),
-        fetch(`${API_BASE}/faq`),
-        fetch(`${API_BASE}/contact`),
-        fetch(`${API_BASE}/partners`),
-        fetch(`${API_BASE}/dealer/requests`, { headers: { 'Authorization': `Bearer ${token}` } }),
-        fetch(`${API_BASE}/contact/messages`, { headers: { 'Authorization': `Bearer ${token}` } })
+        fetch(`${API_BASE}/promotions`, nc),
+        fetch(`${API_BASE}/testimonials`, nc),
+        fetch(`${API_BASE}/team`, nc),
+        fetch(`${API_BASE}/faq`, nc),
+        fetch(`${API_BASE}/contact`, nc),
+        fetch(`${API_BASE}/partners`, nc),
+        fetch(`${API_BASE}/dealer/requests`, { ...nc, headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_BASE}/contact/messages`, { ...nc, headers: { 'Authorization': `Bearer ${token}` } })
       ]);
 
       if (dealRes.status === 401 || dealRes.status === 403) {
@@ -133,7 +134,7 @@ export default function AdminDashboard() {
     const endpoint = activeTab;
     const url = editingItem ? `${API_BASE}/${endpoint}/${editingItem.id}` : `${API_BASE}/${endpoint}`;
 
-    let bodyData;
+    let bodyData: any;
     if (activeTab === 'promotions') bodyData = promotionData;
     else if (activeTab === 'testimonials') bodyData = { ...testimonialData, rating: Number(testimonialData.rating) };
     else if (activeTab === 'team') bodyData = teamData;
@@ -146,8 +147,22 @@ export default function AdminDashboard() {
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(bodyData)
       });
-      if (res.ok) { setIsModalOpen(false); fetchData(); }
-    } catch (e) { console.error(e); }
+      if (res.ok) {
+        const saved = await res.json();
+        setIsModalOpen(false);
+        const upsert = (prev: any[]) => editingItem
+          ? prev.map(i => i.id === saved.id ? saved : i)
+          : [saved, ...prev];
+        if (activeTab === 'promotions') setPromotions(upsert);
+        else if (activeTab === 'testimonials') setTestimonials(upsert);
+        else if (activeTab === 'team') setTeam(upsert);
+        else if (activeTab === 'faq') setFaqs(upsert);
+        else if (activeTab === 'partners') setPartners(upsert);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(`Save failed (${res.status}): ${data.error || res.statusText}`);
+      }
+    } catch (e: any) { alert(`Save failed: ${e.message}`); }
   };
 
   const handleDelete = async (id: string, tab: string) => {
@@ -167,7 +182,14 @@ export default function AdminDashboard() {
         alert(`Delete failed (${res.status}): ${data.error || res.statusText}`);
         return;
       }
-      fetchData();
+      const remove = (prev: any[]) => prev.filter(i => i.id !== id);
+      if (tab === 'promotions') setPromotions(remove);
+      else if (tab === 'testimonials') setTestimonials(remove);
+      else if (tab === 'team') setTeam(remove);
+      else if (tab === 'faq') setFaqs(remove);
+      else if (tab === 'partners') setPartners(remove);
+      else if (tab === 'dealerRequests') setDealerRequests(remove);
+      else if (tab === 'contactMessages') setContactMessages(remove);
     } catch (e: any) { alert(`Delete failed: ${e.message}`); }
   };
 

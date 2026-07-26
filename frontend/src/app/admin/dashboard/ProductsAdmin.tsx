@@ -66,7 +66,8 @@ export default function ProductsAdmin() {
   const [productForm, setProductForm] = useState(emptyProduct());
 
   const fetchAll = async () => {
-    const [cRes, pRes] = await Promise.all([fetch(`${API}/categories`), fetch(`${API}`)]);
+    const nc = { cache: 'no-store' as const };
+    const [cRes, pRes] = await Promise.all([fetch(`${API}/categories`, nc), fetch(`${API}`, nc)]);
     setCategories(await cRes.json());
     setProducts(await pRes.json());
   };
@@ -88,14 +89,20 @@ export default function ProductsAdmin() {
       const url = editCategory?`${API}/categories/${editCategory.id}`:`${API}/categories`;
       const res = await fetch(url,{method,headers:getH(),body:JSON.stringify(categoryForm)});
       if(!res.ok) throw new Error(await res.text());
-      setCategoryModal(false); fetchAll();
+      const saved = await res.json();
+      setCategoryModal(false);
+      setCategories(prev => editCategory ? prev.map(c => c.id===saved.id ? saved : c) : [saved,...prev]);
     } catch(e:any){ alert('Error: '+e.message); }
   };
 
   const deleteCategory = async (id:string) => {
     if(!confirm('Delete category and ALL its products?')) return;
-    try { await fetch(`${API}/categories/${id}`,{method:'DELETE',headers:getH()}); fetchAll(); }
-    catch(e:any){ alert('Error: '+e.message); }
+    try {
+      const res = await fetch(`${API}/categories/${id}`,{method:'DELETE',headers:getH()});
+      if(!res.ok) throw new Error(await res.text());
+      setCategories(prev => prev.filter(c => c.id!==id));
+      setProducts(prev => prev.filter(p => p.categoryId!==id));
+    } catch(e:any){ alert('Error: '+e.message); }
   };
 
   const saveProduct = async () => {
@@ -104,14 +111,19 @@ export default function ProductsAdmin() {
       const url = editProduct?`${API}/${editProduct.id}`:`${API}`;
       const res = await fetch(url,{method,headers:getH(),body:JSON.stringify(productForm)});
       if(!res.ok) throw new Error(await res.text());
-      setProductModal(false); fetchAll();
+      const saved = await res.json();
+      setProductModal(false);
+      setProducts(prev => editProduct ? prev.map(p => p.id===saved.id ? saved : p) : [saved,...prev]);
     } catch(e:any){ alert('Error: '+e.message); }
   };
 
   const deleteProduct = async (id:string) => {
     if(!confirm('Delete this product?')) return;
-    try { await fetch(`${API}/${id}`,{method:'DELETE',headers:getH()}); fetchAll(); }
-    catch(e:any){ alert('Error: '+e.message); }
+    try {
+      const res = await fetch(`${API}/${id}`,{method:'DELETE',headers:getH()});
+      if(!res.ok) throw new Error(await res.text());
+      setProducts(prev => prev.filter(p => p.id!==id));
+    } catch(e:any){ alert('Error: '+e.message); }
   };
 
   const openCategoryModal = (c?: any) => {
