@@ -349,7 +349,7 @@ export default function AdminDashboard() {
                         siteDescription: contactInfo.siteDescription,
                       })
                     });
-                    if (res.ok) { fetchData(); alert('Settings saved!'); }
+                    if (res.ok) { alert('Settings saved!'); await fetchData(); }
                     else { const err = await res.json(); alert(err.error || 'Failed to save'); }
                   }} className={styles.saveBtn}>
                     Save Contact Settings
