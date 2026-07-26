@@ -1,12 +1,23 @@
 import { cache } from 'react';
 import API_BASE from './api';
 
+// In Docker, Next.js SSR runs inside the frontend container where localhost
+// doesn't reach the backend container. INTERNAL_API_URL uses the Docker
+// service name (http://backend:5001/api) so SSR fetches work correctly.
+// Falls back to API_BASE for local development.
+const SSR_BASE = process.env.INTERNAL_API_URL || API_BASE;
+
 async function getJSON<T>(path: string, fallback: T): Promise<T> {
+  const url = `${SSR_BASE}${path}`;
   try {
-    const res = await fetch(`${API_BASE}${path}`, { cache: 'no-store' });
-    if (!res.ok) return fallback;
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) {
+      console.error(`[data] API ${res.status} for ${url}`);
+      return fallback;
+    }
     return await res.json();
-  } catch {
+  } catch (err) {
+    console.error(`[data] Fetch failed for ${url}:`, err);
     return fallback;
   }
 }

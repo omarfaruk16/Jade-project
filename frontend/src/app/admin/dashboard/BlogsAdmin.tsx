@@ -66,8 +66,16 @@ export default function BlogsAdmin() {
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(form)
       });
-      if (res.ok) { setModal(false); fetchBlogs(); }
-    } catch (e) { console.error(e); }
+      if (res.ok) {
+        setModal(false);
+        fetchBlogs();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(`Save failed: ${data.error || res.statusText}`);
+      }
+    } catch (e: any) {
+      alert(`Save failed: ${e.message}`);
+    }
   };
 
   const handleDelete = async (id: string) => {

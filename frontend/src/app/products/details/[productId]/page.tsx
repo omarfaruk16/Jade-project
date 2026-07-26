@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getProductById } from '@/lib/data';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';

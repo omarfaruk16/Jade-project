@@ -157,12 +157,22 @@ export default function ProjectsAdmin() {
       processStepsJson: JSON.stringify(form.processStepsJson),
     };
 
-    const res = await fetch(url, {
-      method,
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) { closeModal(); fetchProjects(); }
+    try {
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) {
+        closeModal();
+        fetchProjects();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(`Save failed: ${data.error || res.statusText}`);
+      }
+    } catch (e: any) {
+      alert(`Save failed: ${e.message}`);
+    }
   };
 
   const handleDelete = async (id: string) => {

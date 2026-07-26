@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getServiceChildBySlug, getServices, getProductCategories } from '@/lib/data';
 import Footer from '@/components/layout/Footer';
 import SmoothScroll from '@/components/layout/SmoothScroll';
