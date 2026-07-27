@@ -77,7 +77,7 @@ export default function ProductsAdmin() {
     setUploading(true);
     const fd = new FormData(); fd.append('image', file);
     const tok = typeof window!=='undefined' ? localStorage.getItem('adminToken') : '';
-    const res = await fetch(`${API_BASE}/upload`,{method:'POST',headers:{'Authorization':`Bearer ${tok}`},body:fd});
+    const res = await fetch(`${API_BASE}/upload/local`,{method:'POST',headers:{'Authorization':`Bearer ${tok}`},body:fd});
     const data = await res.json(); setUploading(false); return data.url||'';
   };
 

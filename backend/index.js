@@ -109,6 +109,40 @@ const upload = multer({
 
 const auth = require('./middleware/auth');
 
+// Local disk storage — always saves to VPS, ignores Cloudinary
+const localDiskStorage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, uploadsDir),
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  }
+});
+const localUpload = multer({
+  storage: localDiskStorage,
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = /jpeg|jpg|png|webp|gif|avif/;
+    if (allowedTypes.test(path.extname(file.originalname).toLowerCase()) && allowedTypes.test(file.mimetype)) {
+      return cb(null, true);
+    }
+    cb(new Error('Only images (jpeg, jpg, png, webp, gif, avif) are allowed'));
+  }
+});
+
+// VPS upload endpoint for products & projects — stores on disk, URL served via frontend rewrite
+app.post('/api/upload/local', auth, (req, res) => {
+  localUpload.single('image')(req, res, (err) => {
+    if (err) return res.status(400).json({ error: err.message || 'Upload failed' });
+    if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+    // Return URL at the frontend domain; the Next.js /uploads rewrite proxies it to the backend
+    const frontendBase = (process.env.FRONTEND_URL || process.env.BASE_URL || 'http://localhost:3001')
+      .split(',')[0].trim().replace(/\/$/, '');
+    const url = `${frontendBase}/uploads/${req.file.filename}`;
+    console.log('VPS upload success:', url);
+    res.json({ url });
+  });
+});
+
 // Upload Endpoint (Protected) - with error handling
 app.post('/api/upload', auth, (req, res, next) => {
   upload.single('image')(req, res, (err) => {

@@ -58,7 +58,7 @@ export default function ProjectsAdmin() {
     const fd = new FormData();
     fd.append('image', file);
     const token = localStorage.getItem('adminToken');
-    const res = await fetch(`${API_BASE}/upload`, {
+    const res = await fetch(`${API_BASE}/upload/local`, {
       method: 'POST', body: fd,
       headers: { 'Authorization': `Bearer ${token}` },
     });

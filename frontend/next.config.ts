@@ -5,6 +5,18 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: "..",
   },
+  async rewrites() {
+    // Proxy /uploads/* to the backend container so VPS-stored images are
+    // served at the frontend domain without any Nginx config changes.
+    const backendBase = (process.env.INTERNAL_API_URL || 'http://localhost:5001/api')
+      .replace(/\/api$/, '');
+    return [
+      {
+        source: '/uploads/:path*',
+        destination: `${backendBase}/uploads/:path*`,
+      },
+    ];
+  },
   env: {
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME:
       process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "",
