@@ -38,14 +38,23 @@ app.use(express.json());
 // Rate Limiting — 200 requests per 15 minutes per IP
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 200,
+  max: 1000,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many requests, please try again later.' },
   // Don't rate limit the health check or the development environment.
   // NOTE: the limiter is mounted at '/api/', so Express strips that prefix and
   // req.path is '/health' here — match against req.originalUrl for the full path.
-  skip: (req) => process.env.NODE_ENV === 'development' || req.originalUrl.startsWith('/api/health'),
+  skip: (req) => {
+    const ip = req.ip || '';
+    return process.env.NODE_ENV === 'development'
+      || req.originalUrl.startsWith('/api/health')
+      || ip.startsWith('172.')
+      || ip.startsWith('10.')
+      || ip === '127.0.0.1'
+      || ip === '::1'
+      || ip === '::ffff:127.0.0.1';
+  },
 });
 app.use('/api/', limiter);
 
