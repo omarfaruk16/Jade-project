@@ -38,6 +38,6 @@ const DEFAULT_BLOGS = [
 
 export default async function BlogsSection() {
   const blogs = await getRecentBlogs(4);
-  const displayBlogs = Array.isArray(blogs) && blogs.length > 0 ? blogs : DEFAULT_BLOGS;
+  const displayBlogs = Array.isArray(blogs) ? blogs : [];
   return <BlogsSectionClient blogs={displayBlogs} />;
 }
